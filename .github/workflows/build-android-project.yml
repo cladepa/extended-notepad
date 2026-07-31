@@ -49,7 +49,7 @@ jobs:
         key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('gradle/wrapper/gradle-wrapper.*') }}
 
     - name: "Build: Project with make"
-      run: make clean all
+      run: FLAVOR=Default make clean all
 
     - name: "Build: List dist files"
       if: always()
