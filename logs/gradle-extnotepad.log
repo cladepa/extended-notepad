@@ -14,7 +14,7 @@ or from Android Studio, click: `Refactor` > `Migrate BuildConfig to Gradle Build
 > Task :app:preFlavorDefaultDebugBuild UP-TO-DATE
 > Task :app:mergeFlavorDefaultDebugNativeDebugMetadata NO-SOURCE
 > Task :copyRepoFiles UP-TO-DATE
-> Task :app:generateFlavorDefaultDebugBuildConfig UP-TO-DATE
+> Task :app:generateFlavorDefaultDebugBuildConfig
 > Task :app:javaPreCompileFlavorDefaultDebug UP-TO-DATE
 > Task :app:checkFlavorDefaultDebugAarMetadata UP-TO-DATE
 > Task :app:processFlavorDefaultDebugNavigationResources UP-TO-DATE
@@ -29,7 +29,22 @@ or from Android Studio, click: `Refactor` > `Migrate BuildConfig to Gradle Build
 > Task :app:processFlavorDefaultDebugManifest UP-TO-DATE
 > Task :app:processFlavorDefaultDebugManifestForPackage UP-TO-DATE
 > Task :app:processFlavorDefaultDebugResources UP-TO-DATE
-> Task :app:compileFlavorDefaultDebugJavaWithJavac UP-TO-DATE
+
+> Task :app:compileFlavorDefaultDebugJavaWithJavac
+Java compiler version 21 has deprecated support for compiling with source/target version 8.
+Try one of the following options:
+    1. [Recommended] Use Java toolchain with a lower language version
+    2. Set a higher source/target version
+    3. Use a lower version of the JDK running the build (if you're not using Java toolchain)
+For more details on how to configure these settings, see https://developer.android.com/build/jdks.
+To suppress this warning, set android.javaCompile.suppressSourceTargetDeprecationWarning=true in gradle.properties.
+warning: [options] source value 8 is obsolete and will be removed in a future release
+warning: [options] target value 8 is obsolete and will be removed in a future release
+warning: [options] To suppress warnings about obsolete options, use -Xlint:-options.
+Note: Some input files use or override a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+3 warnings
+
 > Task :app:mergeFlavorDefaultDebugShaders
 > Task :app:compileFlavorDefaultDebugShaders NO-SOURCE
 > Task :app:generateFlavorDefaultDebugAssets UP-TO-DATE
@@ -42,11 +57,11 @@ or from Android Studio, click: `Refactor` > `Migrate BuildConfig to Gradle Build
 > Task :app:mergeFlavorDefaultDebugJniLibFolders
 > Task :app:mergeFlavorDefaultDebugNativeLibs NO-SOURCE
 > Task :app:stripFlavorDefaultDebugDebugSymbols NO-SOURCE
-> Task :app:mergeDexFlavorDefaultDebug
 > Task :app:mergeFlavorDefaultDebugJavaResource
 > Task :app:validateSigningFlavorDefaultDebug
 > Task :app:writeFlavorDefaultDebugAppMetadata
 > Task :app:writeFlavorDefaultDebugSigningConfigVersions
+> Task :app:mergeDexFlavorDefaultDebug
 > Task :app:packageFlavorDefaultDebug
 > Task :app:createFlavorDefaultDebugApkListingFileRedirect
 > Task :app:assembleFlavorDefaultDebug
@@ -59,5 +74,5 @@ You can use '--warning-mode all' to show the individual deprecation warnings and
 
 For more on this, please refer to https://docs.gradle.org/8.13/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
 
-BUILD SUCCESSFUL in 54s
-31 actionable tasks: 14 executed, 17 up-to-date
+BUILD SUCCESSFUL in 55s
+31 actionable tasks: 16 executed, 15 up-to-date

@@ -46,8 +46,8 @@ Note: Recompile with -Xlint:deprecation for details.
 
 > Task :app:preFlavorDefaultDebugUnitTestBuild UP-TO-DATE
 > Task :app:processFlavorDefaultDebugJavaRes NO-SOURCE
-> Task :app:processFlavorDefaultDebugUnitTestJavaRes NO-SOURCE
 > Task :app:javaPreCompileFlavorDefaultDebugUnitTest
+> Task :app:processFlavorDefaultDebugUnitTestJavaRes NO-SOURCE
 > Task :app:bundleFlavorDefaultDebugClassesToRuntimeJar
 > Task :app:bundleFlavorDefaultDebugClassesToCompileJar
 
@@ -198,113 +198,105 @@ WikitextFileTests$CodeBlockPreprocessingTest > sourceViewBlockIsReplacedByPlaceh
 
 WikitextFileTests$GeneratorTests > createsCorrectContentsForNewWikitextFiles PASSED
 
-WikitextFileTests$ZimFileHeaderTest > zimHeaderNotAtBeginningOfTheFileShouldNotMatch FAILED
-    java.lang.ExceptionInInitializerError at WikitextFileTests.java:62
-        Caused by: java.util.regex.PatternSyntaxException at WikitextFileTests.java:62
-
-WikitextFileTests$ZimFileHeaderTest > zimHeaderAtBeginningOfTheFileShouldMatch FAILED
-    java.lang.NoClassDefFoundError at WikitextFileTests.java:54
-        Caused by: java.lang.ExceptionInInitializerError at WikitextFileTests.java:62
-
 WikitextLinkResolverTests > resolvesTopLevelLinkWithDynamicallyDeterminedRoot STANDARD_OUT
-    Created test notebook in: /tmp/markorTemp4597488320255518180
-    Deleted: /tmp/markorTemp4597488320255518180
+    Created test notebook in: /tmp/markorTemp6833838645965013207
+    Deleted: /tmp/markorTemp6833838645965013207
 
 WikitextLinkResolverTests > resolvesTopLevelLinkWithDynamicallyDeterminedRoot PASSED
 
 WikitextLinkResolverTests > resolvesRelativeLinkIncludingCurrentPage STANDARD_OUT
-    Created test notebook in: /tmp/markorTemp9541596073732271758
-    Deleted: /tmp/markorTemp9541596073732271758
+    Created test notebook in: /tmp/markorTemp17263924573408619659
+    Deleted: /tmp/markorTemp17263924573408619659
 
 WikitextLinkResolverTests > resolvesRelativeLinkIncludingCurrentPage PASSED
 
 WikitextLinkResolverTests > resolvesRelativeLinkFromParent STANDARD_OUT
-    Created test notebook in: /tmp/markorTemp9217051257246905497
-    Deleted: /tmp/markorTemp9217051257246905497
+    Created test notebook in: /tmp/markorTemp815411901556000665
+    Deleted: /tmp/markorTemp815411901556000665
 
 WikitextLinkResolverTests > resolvesRelativeLinkFromParent PASSED
 
 WikitextLinkResolverTests > resolvesRelativeLinkFromRootSibling STANDARD_OUT
-    Created test notebook in: /tmp/markorTemp13157094209587016368
-    Deleted: /tmp/markorTemp13157094209587016368
+    Created test notebook in: /tmp/markorTemp10937101005531508906
+    Deleted: /tmp/markorTemp10937101005531508906
 
 WikitextLinkResolverTests > resolvesRelativeLinkFromRootSibling PASSED
 
 WikitextLinkResolverTests > assumesCurrentDirAsTopLevelLinkIfRootCannotBeDetermined STANDARD_OUT
-    Created test notebook in: /tmp/markorTemp2636679241963456367
-    Deleted: /tmp/markorTemp2636679241963456367
+    Created test notebook in: /tmp/markorTemp12327264078216387403
+    Deleted: /tmp/markorTemp12327264078216387403
 
 WikitextLinkResolverTests > assumesCurrentDirAsTopLevelLinkIfRootCannotBeDetermined PASSED
 
 WikitextLinkResolverTests > resolvesSubPageLinkDirectSubpageIgnoringInnerPageReference STANDARD_OUT
-    Created test notebook in: /tmp/markorTemp3734050191670777847
-    Deleted: /tmp/markorTemp3734050191670777847
+    Created test notebook in: /tmp/markorTemp12106859590093503601
+    Deleted: /tmp/markorTemp12106859590093503601
 
 WikitextLinkResolverTests > resolvesSubPageLinkDirectSubpageIgnoringInnerPageReference PASSED
 
 WikitextLinkResolverTests > returnsNullIfRelativePageCannotBeFound STANDARD_OUT
-    Created test notebook in: /tmp/markorTemp6228975706408704322
-    Deleted: /tmp/markorTemp6228975706408704322
+    Created test notebook in: /tmp/markorTemp10461061508125019454
+    Deleted: /tmp/markorTemp10461061508125019454
 
 WikitextLinkResolverTests > returnsNullIfRelativePageCannotBeFound PASSED
 
 WikitextLinkResolverTests > resolvesRelativeLinkFromParentIgnoringInnerPageReference STANDARD_OUT
-    Created test notebook in: /tmp/markorTemp3397797215201705810
-    Deleted: /tmp/markorTemp3397797215201705810
+    Created test notebook in: /tmp/markorTemp5992430641978644263
+    Deleted: /tmp/markorTemp5992430641978644263
 
 WikitextLinkResolverTests > resolvesRelativeLinkFromParentIgnoringInnerPageReference PASSED
 
 WikitextLinkResolverTests > resolvesRelativeLinkToNearestReachablePage STANDARD_OUT
-    Created test notebook in: /tmp/markorTemp6202554407404480856
-    Deleted: /tmp/markorTemp6202554407404480856
+    Created test notebook in: /tmp/markorTemp5229877354788241321
+    Deleted: /tmp/markorTemp5229877354788241321
 
 WikitextLinkResolverTests > resolvesRelativeLinkToNearestReachablePage PASSED
 
 WikitextLinkResolverTests > resolvesSubPageLinkSubpageWithDescription STANDARD_OUT
-    Created test notebook in: /tmp/markorTemp8890273033739418965
-    Deleted: /tmp/markorTemp8890273033739418965
+    Created test notebook in: /tmp/markorTemp6833773171636890286
+    Deleted: /tmp/markorTemp6833773171636890286
 
 WikitextLinkResolverTests > resolvesSubPageLinkSubpageWithDescription PASSED
 
 WikitextLinkResolverTests > resolvesTopLevelLinkWithDescription STANDARD_OUT
-    Created test notebook in: /tmp/markorTemp7665552156892335686
-    Deleted: /tmp/markorTemp7665552156892335686
+    Created test notebook in: /tmp/markorTemp9328903250757885622
+    Deleted: /tmp/markorTemp9328903250757885622
 
 WikitextLinkResolverTests > resolvesTopLevelLinkWithDescription PASSED
 
 WikitextLinkResolverTests > resolvesSubPageLinkDirectSubpage STANDARD_OUT
-    Created test notebook in: /tmp/markorTemp17632654718381258817
-    Deleted: /tmp/markorTemp17632654718381258817
+    Created test notebook in: /tmp/markorTemp12528494140712734173
+    Deleted: /tmp/markorTemp12528494140712734173
 
 WikitextLinkResolverTests > resolvesSubPageLinkDirectSubpage PASSED
 
 WikitextLinkResolverTests > returnsNullIfRelativePageCannotBeFoundWithUnreachableRoot STANDARD_OUT
-    Created test notebook in: /tmp/markorTemp6625551844498898894
-    Deleted: /tmp/markorTemp6625551844498898894
+    Created test notebook in: /tmp/markorTemp470090104992573128
+    Deleted: /tmp/markorTemp470090104992573128
 
 WikitextLinkResolverTests > returnsNullIfRelativePageCannotBeFoundWithUnreachableRoot PASSED
 
 WikitextLinkResolverTests > resolvesTopLevelLinkIgnoringInnerPageReference STANDARD_OUT
-    Created test notebook in: /tmp/markorTemp10750342296565969310
-    Deleted: /tmp/markorTemp10750342296565969310
+    Created test notebook in: /tmp/markorTemp6540805745112117728
+    Deleted: /tmp/markorTemp6540805745112117728
 
 WikitextLinkResolverTests > resolvesTopLevelLinkIgnoringInnerPageReference PASSED
 
 WikitextLinkResolverTests > resolvesWebLinkWithDescription STANDARD_OUT
-    Created test notebook in: /tmp/markorTemp3113450891179345306
-    Deleted: /tmp/markorTemp3113450891179345306
+    Created test notebook in: /tmp/markorTemp4445548087337482778
+    Deleted: /tmp/markorTemp4445548087337482778
 
 WikitextLinkResolverTests > resolvesWebLinkWithDescription PASSED
 
 WikitextLinkResolverTests > resolvesTopLevelLink STANDARD_OUT
-    Created test notebook in: /tmp/markorTemp9717403352534811256
-    Deleted: /tmp/markorTemp9717403352534811256
+    Created test notebook in: /tmp/markorTemp917413622361470491
+    Deleted: /tmp/markorTemp917413622361470491
 
 WikitextLinkResolverTests > resolvesTopLevelLink PASSED
 
 WikitextLinkResolverTests > doesNotResolveInnerPageReference STANDARD_OUT
-    Created test notebook in: /tmp/markorTemp17532575597918500536
-    Deleted: /tmp/markorTemp17532575597918500536
+    Created test notebook in: /tmp/markorTemp18423784446624380357
+    Deleted: /tmp/markorTemp18423784446624380357
 
 WikitextLinkResolverTests > doesNotResolveInnerPageReference PASSED
 
@@ -335,24 +327,24 @@ WikitextReplacePatternGeneratorTests$VariousTests > addHeadingCharactersAroundMo
 WikitextReplacePatternGeneratorTests$VariousTests > toggleFromUncheckedToCheckedBox PASSED
 
 WikitextSyntaxHighlighterTests$HeadingTests > invalidHeadingTooFewEqualSigns FAILED
-    java.lang.NoClassDefFoundError at WikitextSyntaxHighlighterTests.java:26
-        Caused by: java.lang.ExceptionInInitializerError at Pattern.java:2204
+    java.lang.ExceptionInInitializerError at WikitextSyntaxHighlighterTests.java:26
+        Caused by: java.util.regex.PatternSyntaxException at WikitextSyntaxHighlighterTests.java:26
 
 WikitextSyntaxHighlighterTests$HeadingTests > smallestHeading FAILED
     java.lang.NoClassDefFoundError at WikitextSyntaxHighlighterTests.java:26
-        Caused by: java.lang.ExceptionInInitializerError at Pattern.java:2204
+        Caused by: java.lang.ExceptionInInitializerError at WikitextSyntaxHighlighterTests.java:26
 
 WikitextSyntaxHighlighterTests$HeadingTests > biggestHeading FAILED
     java.lang.NoClassDefFoundError at WikitextSyntaxHighlighterTests.java:26
-        Caused by: java.lang.ExceptionInInitializerError at Pattern.java:2204
+        Caused by: java.lang.ExceptionInInitializerError at WikitextSyntaxHighlighterTests.java:26
 
 WikitextSyntaxHighlighterTests$HeadingTests > invalidHeadingUnequalCountOfEqualSigns FAILED
     java.lang.NoClassDefFoundError at WikitextSyntaxHighlighterTests.java:26
-        Caused by: java.lang.ExceptionInInitializerError at Pattern.java:2204
+        Caused by: java.lang.ExceptionInInitializerError at WikitextSyntaxHighlighterTests.java:26
 
 WikitextSyntaxHighlighterTests$HeadingTests > emptyHeading FAILED
     java.lang.NoClassDefFoundError at WikitextSyntaxHighlighterTests.java:26
-        Caused by: java.lang.ExceptionInInitializerError at Pattern.java:2204
+        Caused by: java.lang.ExceptionInInitializerError at WikitextSyntaxHighlighterTests.java:26
 
 WikitextSyntaxHighlighterTests$PatternBoldTests > boldWithSpace FAILED
     java.lang.NoClassDefFoundError at WikitextSyntaxHighlighterTests.java:73
@@ -630,7 +622,7 @@ MarkdownHighlighterPatternTest > testHighlightPattern PASSED
 
 UrlPatternTest > test PASSED
 
-176 tests completed, 68 failed
+174 tests completed, 66 failed
 
 > Task :app:testFlavorDefaultDebugUnitTest FAILED
 
