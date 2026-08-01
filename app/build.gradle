@@ -161,10 +161,3 @@ dependencies {
         }
     }
 }
-
-// Pre-existing upstream bug: WikitextSyntaxHighlighter.ZIMHEADER Pattern throws
-// PatternSyntaxException on JDK 21's regex engine (unrelated to Extended Notepad changes,
-// wikitext feature not used in this fork). Excluded to keep CI signal meaningful.
-tasks.withType(Test).configureEach {
-    exclude '**/WikitextFileTests$ZimFileHeaderTest.class'
-}
