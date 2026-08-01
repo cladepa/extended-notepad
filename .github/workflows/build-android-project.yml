@@ -75,6 +75,7 @@ jobs:
         retention-days: 5
 
     - name: "Artifacts: Android APK"
+      if: always()
       uses: actions/upload-artifact@v4
       with:
         name: "android-apk"
