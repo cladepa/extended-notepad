@@ -15,6 +15,9 @@ name: "CI"
 
 on: [push, pull_request]
 
+permissions:
+  contents: write
+
 jobs:
   build:
     if: "!contains(github.event.head_commit.message, 'ci skip') && (!contains(github.event_name, 'pull_request') || (contains(github.event_name, 'pull_request') && github.event.pull_request.head.repo.full_name != github.repository))"
@@ -49,7 +52,15 @@ jobs:
         key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('gradle/wrapper/gradle-wrapper.*') }}
 
     - name: "Build: Project with make"
-      run: FLAVOR=Default make clean all
+      run: make clean all
+
+    - name: "Build: Extended Notepad APK (Default flavor, debug)"
+      if: always()
+      run: |
+        chmod +x gradlew
+        mkdir -p dist/log
+        ./gradlew --no-daemon --stacktrace assembleFlavorDefaultDebug 2>&1 | tee dist/log/gradle-extnotepad.log
+        find app -type f -iname '*.apk' -newermt '-300 seconds' -not -iname '*unsigned.apk' -exec cp -v {} dist/ \;
 
     - name: "Build: List dist files"
       if: always()
@@ -69,3 +80,22 @@ jobs:
         name: "android-apk"
         path: |
           dist/*.apk
+
+    - name: "Diagnostics: Push failure logs to ci-logs branch"
+      if: failure()
+      run: |
+        mkdir -p /tmp/ci-logs-work
+        cd /tmp/ci-logs-work
+        git clone https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git repo
+        cd repo
+        git checkout ci-logs 2>/dev/null || git checkout --orphan ci-logs
+        git rm -rf . 2>/dev/null || true
+        mkdir -p logs
+        find "$GITHUB_WORKSPACE/dist/log" -type f -iname "*.log" -exec cp {} logs/ \; 2>/dev/null || true
+        for f in logs/*.log; do [ -f "$f" ] && tail -c 60000 "$f" > "$f.tail" && mv "$f.tail" "$f"; done
+        echo "run: ${{ github.run_id }}  commit: ${{ github.sha }}  time: $(date -u)" > logs/README.txt
+        git config user.email "ci@cladepa"
+        git config user.name "CI Bot"
+        git add -A
+        git commit -m "ci logs for run ${{ github.run_id }}" -q
+        git push origin ci-logs --force
