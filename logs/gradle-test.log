@@ -1,0 +1,816 @@
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.13/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+Configuration on demand is an incubating feature.
+
+> Configure project :app
+WARNING: The option setting 'android.defaults.buildfeatures.buildconfig=true' is deprecated.
+The current default is 'false'.
+It will be removed in version 10.0 of the Android Gradle plugin.
+To keep using this feature, add the following to your module-level build.gradle files:
+    android.buildFeatures.buildConfig = true
+or from Android Studio, click: `Refactor` > `Migrate BuildConfig to Gradle Build Files`.
+
+> Task :app:preBuild UP-TO-DATE
+> Task :app:preFlavorDefaultDebugBuild UP-TO-DATE
+> Task :copyRepoFiles UP-TO-DATE
+> Task :app:generateFlavorDefaultDebugBuildConfig
+> Task :app:javaPreCompileFlavorDefaultDebug UP-TO-DATE
+> Task :app:checkFlavorDefaultDebugAarMetadata UP-TO-DATE
+> Task :app:processFlavorDefaultDebugNavigationResources UP-TO-DATE
+> Task :app:compileFlavorDefaultDebugNavigationResources UP-TO-DATE
+> Task :app:generateFlavorDefaultDebugResValues UP-TO-DATE
+> Task :app:mapFlavorDefaultDebugSourceSetPaths UP-TO-DATE
+> Task :app:generateFlavorDefaultDebugResources UP-TO-DATE
+> Task :app:mergeFlavorDefaultDebugResources UP-TO-DATE
+> Task :app:createFlavorDefaultDebugCompatibleScreenManifests UP-TO-DATE
+> Task :app:extractDeepLinksFlavorDefaultDebug UP-TO-DATE
+> Task :app:processFlavorDefaultDebugMainManifest UP-TO-DATE
+> Task :app:processFlavorDefaultDebugManifest UP-TO-DATE
+> Task :app:processFlavorDefaultDebugManifestForPackage UP-TO-DATE
+> Task :app:processFlavorDefaultDebugResources UP-TO-DATE
+
+> Task :app:compileFlavorDefaultDebugJavaWithJavac
+Java compiler version 21 has deprecated support for compiling with source/target version 8.
+Try one of the following options:
+    1. [Recommended] Use Java toolchain with a lower language version
+    2. Set a higher source/target version
+    3. Use a lower version of the JDK running the build (if you're not using Java toolchain)
+For more details on how to configure these settings, see https://developer.android.com/build/jdks.
+To suppress this warning, set android.javaCompile.suppressSourceTargetDeprecationWarning=true in gradle.properties.
+warning: [options] source value 8 is obsolete and will be removed in a future release
+warning: [options] target value 8 is obsolete and will be removed in a future release
+warning: [options] To suppress warnings about obsolete options, use -Xlint:-options.
+Note: Some input files use or override a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+3 warnings
+
+> Task :app:preFlavorDefaultDebugUnitTestBuild UP-TO-DATE
+> Task :app:processFlavorDefaultDebugJavaRes NO-SOURCE
+> Task :app:processFlavorDefaultDebugUnitTestJavaRes NO-SOURCE
+> Task :app:javaPreCompileFlavorDefaultDebugUnitTest
+> Task :app:bundleFlavorDefaultDebugClassesToRuntimeJar
+> Task :app:bundleFlavorDefaultDebugClassesToCompileJar
+
+> Task :app:compileFlavorDefaultDebugUnitTestJavaWithJavac
+Java compiler version 21 has deprecated support for compiling with source/target version 8.
+Try one of the following options:
+    1. [Recommended] Use Java toolchain with a lower language version
+    2. Set a higher source/target version
+    3. Use a lower version of the JDK running the build (if you're not using Java toolchain)
+For more details on how to configure these settings, see https://developer.android.com/build/jdks.
+To suppress this warning, set android.javaCompile.suppressSourceTargetDeprecationWarning=true in gradle.properties.
+warning: [options] source value 8 is obsolete and will be removed in a future release
+warning: [options] target value 8 is obsolete and will be removed in a future release
+warning: [options] To suppress warnings about obsolete options, use -Xlint:-options.
+3 warnings
+
+> Task :app:testFlavorDefaultDebugUnitTest
+
+TextViewUtilsTest > findDiffTest PASSED
+
+Csv2MdTableTest > toMdTable PASSED
+
+Csv2MdTableTest > toMdTableInferSeperator PASSED
+
+MarkdownHighlighterPatternBoldTest > boldWithSpace PASSED
+
+MarkdownHighlighterPatternBoldTest > multipleUnderlineBoldInSentence PASSED
+
+MarkdownHighlighterPatternBoldTest > underlineBoldInSentence PASSED
+
+MarkdownHighlighterPatternBoldTest > italicsStarWithTwoStartCharactersShouldNotMatch PASSED
+
+MarkdownHighlighterPatternBoldTest > italicUnderlineShouldNotMatch PASSED
+
+MarkdownHighlighterPatternBoldTest > mixedStarAndUnderlineOnSameSideShouldNotMatch PASSED
+
+MarkdownHighlighterPatternBoldTest > oneLetterUnderlineBold PASSED
+
+MarkdownHighlighterPatternBoldTest > boldInAList PASSED
+
+MarkdownHighlighterPatternBoldTest > mixedUnderlineAndStarShouldNotMatch PASSED
+
+MarkdownHighlighterPatternBoldTest > starBoldInSentence PASSED
+
+MarkdownHighlighterPatternBoldTest > underlineBold PASSED
+
+MarkdownHighlighterPatternBoldTest > multipleStarBoldInSentence PASSED
+
+MarkdownHighlighterPatternBoldTest > mixedStarAndUnderlineShouldNotMatch2 PASSED
+
+MarkdownHighlighterPatternBoldTest > boldInAWordShouldNotMatch PASSED
+
+MarkdownHighlighterPatternBoldTest > starBold PASSED
+
+MarkdownHighlighterPatternBoldTest > italicStarShouldNotMatch PASSED
+
+MarkdownHighlighterPatternItalicTest > underlineItalic PASSED
+
+MarkdownHighlighterPatternItalicTest > boldUnderlineShouldNotMatch PASSED
+
+MarkdownHighlighterPatternItalicTest > italicInAList PASSED
+
+MarkdownHighlighterPatternItalicTest > boldStarShouldNotMatch PASSED
+
+MarkdownHighlighterPatternItalicTest > boldAndItalicStarWithExtraPrecedingStarShouldMatch PASSED
+
+MarkdownHighlighterPatternItalicTest > italicStarWithExtraTrailingStarShouldMatch PASSED
+
+MarkdownHighlighterPatternItalicTest > mixedUnderlineAndStarShouldNotMatch PASSED
+
+MarkdownHighlighterPatternItalicTest > multipleUnderlineItalicInSentence PASSED
+
+MarkdownHighlighterPatternItalicTest > italicWithSpace PASSED
+
+MarkdownHighlighterPatternItalicTest > boldAndItalicStarShouldMatch PASSED
+
+MarkdownHighlighterPatternItalicTest > oneLetterUnderlineItalic PASSED
+
+MarkdownHighlighterPatternItalicTest > mixedStarAndUnderlineShouldNotMatch2 PASSED
+
+MarkdownHighlighterPatternItalicTest > boldInAWordShouldNotMatch PASSED
+
+MarkdownHighlighterPatternItalicTest > multipleStarItalicInSentence PASSED
+
+MarkdownHighlighterPatternItalicTest > starItalicInSentence PASSED
+
+MarkdownHighlighterPatternItalicTest > starItalic PASSED
+
+MarkdownHighlighterPatternItalicTest > underlineItalicInSentence PASSED
+
+MarkdownHighlighterPatternItalicTest > boldAndItalicStarWithExtraTrailingStarShouldMatch PASSED
+
+MarkdownHighlighterPatternListTest > unknownCheckedTaskItem PASSED
+
+MarkdownHighlighterPatternListTest > linePeriodItemShouldNotMatch PASSED
+
+MarkdownHighlighterPatternListTest > uppercaseCheckedTaskItem PASSED
+
+MarkdownHighlighterPatternListTest > uncheckedTaskItem PASSED
+
+MarkdownHighlighterPatternListTest > headerShouldNotMatch PASSED
+
+MarkdownHighlighterPatternListTest > headerWithCharachersShouldNotMatch PASSED
+
+MarkdownHighlighterPatternListTest > lowercaseCheckedTaskItem PASSED
+
+MarkdownHighlighterPatternListTest > starPeriodItemShouldNotMatch PASSED
+
+MarkdownHighlighterPatternListTest > starItem PASSED
+
+MarkdownHighlighterPatternListTest > boldShouldNotMatch PASSED
+
+MarkdownHighlighterPatternListTest > dashItem PASSED
+
+MarkdownHighlighterPatternOrderedListTest > numberItem PASSED
+
+MarkdownHighlighterPatternStrikethroughTest > strikethroughSingleCharacter PASSED
+
+MarkdownHighlighterPatternStrikethroughTest > strikethroughWithSpace PASSED
+
+MarkdownHighlighterPatternStrikethroughTest > strikethrough PASSED
+
+MarkdownHighlighterPatternStrikethroughTest > multipleStrikethrough PASSED
+
+MarkdownHighlighterPatternStrikethroughTest > strikethroughWithPrecedingTilde PASSED
+
+MarkdownHighlighterPatternStrikethroughTest > strikethroughWithSpaceAsLastCharacherShouldNotMatch PASSED
+
+MarkdownHighlighterPatternStrikethroughTest > strikethroughWithTrailingTildeSkipsExtraTildes PASSED
+
+TodoTxtFileRecognitionTests > checkTodoTxtFileRecognition PASSED
+
+TodoTxtQuerySyntaxTests > EvaluateExpressionTest PASSED
+
+TodoTxtQuerySyntaxTests > ParseQuery PASSED
+
+WikitextFileTests$CodeBlockPreprocessingTest > inputWithoutCodeBlocksIsUnchanged PASSED
+
+WikitextFileTests$CodeBlockPreprocessingTest > sourceViewBlockWithoutLangProducesPlainFence PASSED
+
+WikitextFileTests$CodeBlockPreprocessingTest > tripleQuoteBlockIsReplacedByPlaceholderAndFenced PASSED
+
+WikitextFileTests$CodeBlockPreprocessingTest > tripleQuoteInsideSourceViewBlockIsNotExtractedSeparately PASSED
+
+WikitextFileTests$CodeBlockPreprocessingTest > twoSourceViewBlocksProduceTwoPlaceholders PASSED
+
+WikitextFileTests$CodeBlockPreprocessingTest > sourceViewBlockIsReplacedByPlaceholderAndFencedWithLang PASSED
+
+WikitextFileTests$GeneratorTests > createsCorrectContentsForNewWikitextFiles PASSED
+
+WikitextFileTests$ZimFileHeaderTest > zimHeaderNotAtBeginningOfTheFileShouldNotMatch FAILED
+    java.lang.ExceptionInInitializerError at WikitextFileTests.java:62
+        Caused by: java.util.regex.PatternSyntaxException at WikitextFileTests.java:62
+
+WikitextFileTests$ZimFileHeaderTest > zimHeaderAtBeginningOfTheFileShouldMatch FAILED
+    java.lang.NoClassDefFoundError at WikitextFileTests.java:54
+        Caused by: java.lang.ExceptionInInitializerError at WikitextFileTests.java:62
+
+WikitextLinkResolverTests > resolvesTopLevelLinkWithDynamicallyDeterminedRoot STANDARD_OUT
+    Created test notebook in: /tmp/markorTemp4597488320255518180
+    Deleted: /tmp/markorTemp4597488320255518180
+
+WikitextLinkResolverTests > resolvesTopLevelLinkWithDynamicallyDeterminedRoot PASSED
+
+WikitextLinkResolverTests > resolvesRelativeLinkIncludingCurrentPage STANDARD_OUT
+    Created test notebook in: /tmp/markorTemp9541596073732271758
+    Deleted: /tmp/markorTemp9541596073732271758
+
+WikitextLinkResolverTests > resolvesRelativeLinkIncludingCurrentPage PASSED
+
+WikitextLinkResolverTests > resolvesRelativeLinkFromParent STANDARD_OUT
+    Created test notebook in: /tmp/markorTemp9217051257246905497
+    Deleted: /tmp/markorTemp9217051257246905497
+
+WikitextLinkResolverTests > resolvesRelativeLinkFromParent PASSED
+
+WikitextLinkResolverTests > resolvesRelativeLinkFromRootSibling STANDARD_OUT
+    Created test notebook in: /tmp/markorTemp13157094209587016368
+    Deleted: /tmp/markorTemp13157094209587016368
+
+WikitextLinkResolverTests > resolvesRelativeLinkFromRootSibling PASSED
+
+WikitextLinkResolverTests > assumesCurrentDirAsTopLevelLinkIfRootCannotBeDetermined STANDARD_OUT
+    Created test notebook in: /tmp/markorTemp2636679241963456367
+    Deleted: /tmp/markorTemp2636679241963456367
+
+WikitextLinkResolverTests > assumesCurrentDirAsTopLevelLinkIfRootCannotBeDetermined PASSED
+
+WikitextLinkResolverTests > resolvesSubPageLinkDirectSubpageIgnoringInnerPageReference STANDARD_OUT
+    Created test notebook in: /tmp/markorTemp3734050191670777847
+    Deleted: /tmp/markorTemp3734050191670777847
+
+WikitextLinkResolverTests > resolvesSubPageLinkDirectSubpageIgnoringInnerPageReference PASSED
+
+WikitextLinkResolverTests > returnsNullIfRelativePageCannotBeFound STANDARD_OUT
+    Created test notebook in: /tmp/markorTemp6228975706408704322
+    Deleted: /tmp/markorTemp6228975706408704322
+
+WikitextLinkResolverTests > returnsNullIfRelativePageCannotBeFound PASSED
+
+WikitextLinkResolverTests > resolvesRelativeLinkFromParentIgnoringInnerPageReference STANDARD_OUT
+    Created test notebook in: /tmp/markorTemp3397797215201705810
+    Deleted: /tmp/markorTemp3397797215201705810
+
+WikitextLinkResolverTests > resolvesRelativeLinkFromParentIgnoringInnerPageReference PASSED
+
+WikitextLinkResolverTests > resolvesRelativeLinkToNearestReachablePage STANDARD_OUT
+    Created test notebook in: /tmp/markorTemp6202554407404480856
+    Deleted: /tmp/markorTemp6202554407404480856
+
+WikitextLinkResolverTests > resolvesRelativeLinkToNearestReachablePage PASSED
+
+WikitextLinkResolverTests > resolvesSubPageLinkSubpageWithDescription STANDARD_OUT
+    Created test notebook in: /tmp/markorTemp8890273033739418965
+    Deleted: /tmp/markorTemp8890273033739418965
+
+WikitextLinkResolverTests > resolvesSubPageLinkSubpageWithDescription PASSED
+
+WikitextLinkResolverTests > resolvesTopLevelLinkWithDescription STANDARD_OUT
+    Created test notebook in: /tmp/markorTemp7665552156892335686
+    Deleted: /tmp/markorTemp7665552156892335686
+
+WikitextLinkResolverTests > resolvesTopLevelLinkWithDescription PASSED
+
+WikitextLinkResolverTests > resolvesSubPageLinkDirectSubpage STANDARD_OUT
+    Created test notebook in: /tmp/markorTemp17632654718381258817
+    Deleted: /tmp/markorTemp17632654718381258817
+
+WikitextLinkResolverTests > resolvesSubPageLinkDirectSubpage PASSED
+
+WikitextLinkResolverTests > returnsNullIfRelativePageCannotBeFoundWithUnreachableRoot STANDARD_OUT
+    Created test notebook in: /tmp/markorTemp6625551844498898894
+    Deleted: /tmp/markorTemp6625551844498898894
+
+WikitextLinkResolverTests > returnsNullIfRelativePageCannotBeFoundWithUnreachableRoot PASSED
+
+WikitextLinkResolverTests > resolvesTopLevelLinkIgnoringInnerPageReference STANDARD_OUT
+    Created test notebook in: /tmp/markorTemp10750342296565969310
+    Deleted: /tmp/markorTemp10750342296565969310
+
+WikitextLinkResolverTests > resolvesTopLevelLinkIgnoringInnerPageReference PASSED
+
+WikitextLinkResolverTests > resolvesWebLinkWithDescription STANDARD_OUT
+    Created test notebook in: /tmp/markorTemp3113450891179345306
+    Deleted: /tmp/markorTemp3113450891179345306
+
+WikitextLinkResolverTests > resolvesWebLinkWithDescription PASSED
+
+WikitextLinkResolverTests > resolvesTopLevelLink STANDARD_OUT
+    Created test notebook in: /tmp/markorTemp9717403352534811256
+    Deleted: /tmp/markorTemp9717403352534811256
+
+WikitextLinkResolverTests > resolvesTopLevelLink PASSED
+
+WikitextLinkResolverTests > doesNotResolveInnerPageReference STANDARD_OUT
+    Created test notebook in: /tmp/markorTemp17532575597918500536
+    Deleted: /tmp/markorTemp17532575597918500536
+
+WikitextLinkResolverTests > doesNotResolveInnerPageReference PASSED
+
+WikitextReplacePatternGeneratorTests$VariousTests > createEmptyHeading PASSED
+
+WikitextReplacePatternGeneratorTests$VariousTests > replaceDifferentLevelHeadings PASSED
+
+WikitextReplacePatternGeneratorTests$VariousTests > addHeadingCharactersToText PASSED
+
+WikitextReplacePatternGeneratorTests$VariousTests > removeCheckboxForAllCheckStates PASSED
+
+WikitextReplacePatternGeneratorTests$VariousTests > toggleCheckBoxInCorrectOrder PASSED
+
+WikitextReplacePatternGeneratorTests$VariousTests > changePrefixToOrderedListOrRemoveItAlreadyPresent PASSED
+
+WikitextReplacePatternGeneratorTests$VariousTests > keepWhitespaceWhenAddingCheckbox PASSED
+
+WikitextReplacePatternGeneratorTests$VariousTests > removeHeadingCharsForExactHeadingLevel PASSED
+
+WikitextReplacePatternGeneratorTests$VariousTests > createHeadingsWithSpecifiedLevel PASSED
+
+WikitextReplacePatternGeneratorTests$VariousTests > replaceNonChecklistPrefixesWithUncheckedBox PASSED
+
+WikitextReplacePatternGeneratorTests$VariousTests > changePrefixToUnorderedListOrRemoveItAlreadyPresent PASSED
+
+WikitextReplacePatternGeneratorTests$VariousTests > addHeadingCharactersAroundMockHeading PASSED
+
+WikitextReplacePatternGeneratorTests$VariousTests > toggleFromUncheckedToCheckedBox PASSED
+
+WikitextSyntaxHighlighterTests$HeadingTests > invalidHeadingTooFewEqualSigns FAILED
+    java.lang.NoClassDefFoundError at WikitextSyntaxHighlighterTests.java:26
+        Caused by: java.lang.ExceptionInInitializerError at Pattern.java:2204
+
+WikitextSyntaxHighlighterTests$HeadingTests > smallestHeading FAILED
+    java.lang.NoClassDefFoundError at WikitextSyntaxHighlighterTests.java:26
+        Caused by: java.lang.ExceptionInInitializerError at Pattern.java:2204
+
+WikitextSyntaxHighlighterTests$HeadingTests > biggestHeading FAILED
+    java.lang.NoClassDefFoundError at WikitextSyntaxHighlighterTests.java:26
+        Caused by: java.lang.ExceptionInInitializerError at Pattern.java:2204
+
+WikitextSyntaxHighlighterTests$HeadingTests > invalidHeadingUnequalCountOfEqualSigns FAILED
+    java.lang.NoClassDefFoundError at WikitextSyntaxHighlighterTests.java:26
+        Caused by: java.lang.ExceptionInInitializerError at Pattern.java:2204
+
+WikitextSyntaxHighlighterTests$HeadingTests > emptyHeading FAILED
+    java.lang.NoClassDefFoundError at WikitextSyntaxHighlighterTests.java:26
+        Caused by: java.lang.ExceptionInInitializerError at Pattern.java:2204
+
+WikitextSyntaxHighlighterTests$PatternBoldTests > boldWithSpace FAILED
+    java.lang.NoClassDefFoundError at WikitextSyntaxHighlighterTests.java:73
+        Caused by: java.lang.ExceptionInInitializerError at Pattern.java:2204
+
+WikitextSyntaxHighlighterTests$PatternBoldTests > boldInAList FAILED
+    java.lang.NoClassDefFoundError at WikitextSyntaxHighlighterTests.java:73
+        Caused by: java.lang.ExceptionInInitializerError at Pattern.java:2204
+
+WikitextSyntaxHighlighterTests$PatternBoldTests > starBoldInSentence FAILED
+    java.lang.NoClassDefFoundError at WikitextSyntaxHighlighterTests.java:73
+        Caused by: java.lang.ExceptionInInitializerError at Pattern.java:2204
+
+WikitextSyntaxHighlighterTests$PatternBoldTests > boldWithOnlyOneStarAtTheEndShouldNotMatch FAILED
+    java.lang.NoClassDefFoundError at WikitextSyntaxHighlighterTests.java:73
+        Caused by: java.lang.ExceptionInInitializerError at Pattern.java:2204
+
+WikitextSyntaxHighlighterTests$PatternBoldTests > multipleStarBoldInSentence FAILED
+    java.lang.NoClassDefFoundError at WikitextSyntaxHighlighterTests.java:73
+        Caused by: java.lang.ExceptionInInitializerError at Pattern.java:2204
+
+WikitextSyntaxHighlighterTests$PatternBoldTests > boldInAWordShouldNotMatch FAILED
+    java.lang.NoClassDefFoundError at WikitextSyntaxHighlighterTests.java:73
+        Caused by: java.lang.ExceptionInInitializerError at Pattern.java:2204
+
+WikitextSyntaxHighlighterTests$PatternCheckListTests > uncheckedItem FAILED
+    java.lang.NoClassDefFoundError at WikitextSyntaxHighlighterTests.java:126
+        Caused by: java.lang.ExceptionInInitializerError at Pattern.java:2204
+
+WikitextSyntaxHighlighterTests$PatternCheckListTests > itemWithLeftArrow FAILED
+    java.lang.NoClassDefFoundError at WikitextSyntaxHighlighterTests.java:154
+        Caused by: java.lang.ExceptionInInitializerError at Pattern.java:2204
+
+WikitextSyntaxHighlighterTests$PatternCheckListTests > crossedItem FAILED
+    java.lang.NoClassDefFoundError at WikitextSyntaxHighlighterTests.java:140
+        Caused by: java.lang.ExceptionInInitializerError at Pattern.java:2204
+
+WikitextSyntaxHighlighterTests$PatternCheckListTests > itemWithRightArrow FAILED
+    java.lang.NoClassDefFoundError at WikitextSyntaxHighlighterTests.java:147
+        Caused by: java.lang.ExceptionInInitializerError at Pattern.java:2204
+
+WikitextSyntaxHighlighterTests$PatternCheckListTests > checkedItem FAILED
+    java.lang.NoClassDefFoundError at WikitextSyntaxHighlighterTests.java:133
+        Caused by: java.lang.ExceptionInInitializerError at Pattern.java:2204
+
+WikitextSyntaxHighlighterTests$PatternCheckListTests > roundBracesDoNotMatch FAILED
+    java.lang.NoClassDefFoundError at WikitextSyntaxHighlighterTests.java:161
+        Caused by: java.lang.ExceptionInInitializerError at Pattern.java:2204
+
+WikitextSyntaxHighlighterTests$PatternItalicTest > underlineItalic FAILED
+    java.lang.NoClassDefFoundError at WikitextSyntaxHighlighterTests.java:188
+        Caused by: java.lang.ExceptionInInitializerError at Pattern.java:2204
+
+WikitextSyntaxHighlighterTests$PatternItalicTest > boldUnderlineShouldNotMatch FAILED
+    java.lang.NoClassDefFoundError at WikitextSyntaxHighlighterTests.java:188
+        Caused by: java.lang.ExceptionInInitializerError at Pattern.java:2204
+
+WikitextSyntaxHighlighterTests$PatternItalicTest > italicInAList FAILED
+    java.lang.NoClassDefFoundError at WikitextSyntaxHighlighterTests.java:188
+        Caused by: java.lang.ExceptionInInitializerError at Pattern.java:2204
+
+WikitextSyntaxHighlighterTests$PatternItalicTest > boldStarShouldNotMatch FAILED
+    java.lang.NoClassDefFoundError at WikitextSyntaxHighlighterTests.java:188
+        Caused by: java.lang.ExceptionInInitializerError at Pattern.java:2204
+
+WikitextSyntaxHighlighterTests$PatternItalicTest > italicSlashWithExtraTrailingSlashShouldMatch FAILED
+    java.lang.NoClassDefFoundError at WikitextSyntaxHighlighterTests.java:188
+        Caused by: java.lang.ExceptionInInitializerError at Pattern.java:2204
+
+WikitextSyntaxHighlighterTests$PatternItalicTest > boldAndItalicSlashWithExtraPrecedingSlashShouldMatch FAILED
+    java.lang.NoClassDefFoundError at WikitextSyntaxHighlighterTests.java:188
+        Caused by: java.lang.ExceptionInInitializerError at Pattern.java:2204
+
+WikitextSyntaxHighlighterTests$PatternItalicTest > mixedUnderlineAndStarShouldNotMatch FAILED
+    java.lang.NoClassDefFoundError at WikitextSyntaxHighlighterTests.java:188
+        Caused by: java.lang.ExceptionInInitializerError at Pattern.java:2204
+
+WikitextSyntaxHighlighterTests$PatternItalicTest > multipleUnderlineItalicInSentence FAILED
+    java.lang.NoClassDefFoundError at WikitextSyntaxHighlighterTests.java:188
+        Caused by: java.lang.ExceptionInInitializerError at Pattern.java:2204
+
+WikitextSyntaxHighlighterTests$PatternItalicTest > italicWithSpace FAILED
+    java.lang.NoClassDefFoundError at WikitextSyntaxHighlighterTests.java:188
+        Caused by: java.lang.ExceptionInInitializerError at Pattern.java:2204
+
+WikitextSyntaxHighlighterTests$PatternItalicTest > boldAndItalicStarShouldMatch FAILED
+    java.lang.NoClassDefFoundError at WikitextSyntaxHighlighterTests.java:188
+        Caused by: java.lang.ExceptionInInitializerError at Pattern.java:2204
+
+WikitextSyntaxHighlighterTests$PatternItalicTest > oneLetterUnderlineItalic FAILED
+    java.lang.NoClassDefFoundError at WikitextSyntaxHighlighterTests.java:188
+        Caused by: java.lang.ExceptionInInitializerError at Pattern.java:2204
+
+WikitextSyntaxHighlighterTests$PatternItalicTest > mixedStarAndUnderlineShouldNotMatch2 FAILED
+    java.lang.NoClassDefFoundError at WikitextSyntaxHighlighterTests.java:188
+        Caused by: java.lang.ExceptionInInitializerError at Pattern.java:2204
+
+WikitextSyntaxHighlighterTests$PatternItalicTest > boldAndItalicSlashWithExtraTrailingSlashShouldMatch FAILED
+    java.lang.NoClassDefFoundError at WikitextSyntaxHighlighterTests.java:188
+        Caused by: java.lang.ExceptionInInitializerError at Pattern.java:2204
+
+WikitextSyntaxHighlighterTests$PatternItalicTest > underlineItalicInSentence FAILED
+    java.lang.NoClassDefFoundError at WikitextSyntaxHighlighterTests.java:188
+        Caused by: java.lang.ExceptionInInitializerError at Pattern.java:2204
+
+WikitextSyntaxHighlighterTests$PatternListTest > starItemIndentedShouldMatch FAILED
+    java.lang.NoClassDefFoundError at WikitextSyntaxHighlighterTests.java:304
+        Caused by: java.lang.ExceptionInInitializerError at Pattern.java:2204
+
+WikitextSyntaxHighlighterTests$PatternListTest > linePeriodItemShouldNotMatch FAILED
+    java.lang.NoClassDefFoundError at WikitextSyntaxHighlighterTests.java:304
+        Caused by: java.lang.ExceptionInInitializerError at Pattern.java:2204
+
+WikitextSyntaxHighlighterTests$PatternListTest > dashItemShouldNotMatch FAILED
+    java.lang.NoClassDefFoundError at WikitextSyntaxHighlighterTests.java:304
+        Caused by: java.lang.ExceptionInInitializerError at Pattern.java:2204
+
+WikitextSyntaxHighlighterTests$PatternListTest > starItemMultipleSpacesShouldMatch FAILED
+    java.lang.NoClassDefFoundError at WikitextSyntaxHighlighterTests.java:304
+        Caused by: java.lang.ExceptionInInitializerError at Pattern.java:2204
+
+WikitextSyntaxHighlighterTests$PatternListTest > headerShouldNotMatch FAILED
+    java.lang.NoClassDefFoundError at WikitextSyntaxHighlighterTests.java:304
+        Caused by: java.lang.ExceptionInInitializerError at Pattern.java:2204
+
+WikitextSyntaxHighlighterTests$PatternListTest > headerWithCharachersShouldNotMatch FAILED
+    java.lang.NoClassDefFoundError at WikitextSyntaxHighlighterTests.java:304
+        Caused by: java.lang.ExceptionInInitializerError at Pattern.java:2204
+
+WikitextSyntaxHighlighterTests$PatternListTest > starPeriodItemShouldNotMatch FAILED
+    java.lang.NoClassDefFoundError at WikitextSyntaxHighlighterTests.java:304
+        Caused by: java.lang.ExceptionInInitializerError at Pattern.java:2204
+
+WikitextSyntaxHighlighterTests$PatternListTest > starItem FAILED
+    java.lang.NoClassDefFoundError at WikitextSyntaxHighlighterTests.java:304
+        Caused by: java.lang.ExceptionInInitializerError at Pattern.java:2204
+
+WikitextSyntaxHighlighterTests$PatternListTest > boldShouldNotMatch FAILED
+    java.lang.NoClassDefFoundError at WikitextSyntaxHighlighterTests.java:304
+        Caused by: java.lang.ExceptionInInitializerError at Pattern.java:2204
+
+WikitextSyntaxHighlighterTests$PatternOrderedListTest > numberItem FAILED
+    java.lang.NoClassDefFoundError at WikitextSyntaxHighlighterTests.java:373
+        Caused by: java.lang.ExceptionInInitializerError at Pattern.java:2204
+
+WikitextSyntaxHighlighterTests$PatternOrderedListTest > capitalItem FAILED
+    java.lang.NoClassDefFoundError at WikitextSyntaxHighlighterTests.java:373
+        Caused by: java.lang.ExceptionInInitializerError at Pattern.java:2204
+
+WikitextSyntaxHighlighterTests$PatternOrderedListTest > letterItem FAILED
+    java.lang.NoClassDefFoundError at WikitextSyntaxHighlighterTests.java:373
+        Caused by: java.lang.ExceptionInInitializerError at Pattern.java:2204
+
+WikitextSyntaxHighlighterTests$PatternOverallTests > highlightedWordInSentence FAILED
+    java.lang.NoClassDefFoundError at WikitextSyntaxHighlighterTests.java:481
+        Caused by: java.lang.ExceptionInInitializerError at Pattern.java:2204
+
+WikitextSyntaxHighlighterTests$PatternOverallTests > linkToLocalImage FAILED
+    java.lang.NoClassDefFoundError at WikitextSyntaxHighlighterTests.java:579
+        Caused by: java.lang.ExceptionInInitializerError at Pattern.java:2204
+
+WikitextSyntaxHighlighterTests$PatternOverallTests > orderedListHighlightingsNumbers FAILED
+    java.lang.NoClassDefFoundError at WikitextSyntaxHighlighterTests.java:530
+        Caused by: java.lang.ExceptionInInitializerError at Pattern.java:2204
+
+WikitextSyntaxHighlighterTests$PatternOverallTests > orderedListHighlightingsNumbersAndCharacters FAILED
+    java.lang.NoClassDefFoundError at WikitextSyntaxHighlighterTests.java:552
+        Caused by: java.lang.ExceptionInInitializerError at Pattern.java:2204
+
+WikitextSyntaxHighlighterTests$PatternOverallTests > checkListOverMultipleLines FAILED
+    java.lang.NoClassDefFoundError at WikitextSyntaxHighlighterTests.java:604
+        Caused by: java.lang.ExceptionInInitializerError at Pattern.java:2204
+
+WikitextSyntaxHighlighterTests$PatternOverallTests > boldWordInSentence FAILED
+    java.lang.NoClassDefFoundError at WikitextSyntaxHighlighterTests.java:465
+        Caused by: java.lang.ExceptionInInitializerError at Pattern.java:2204
+
+WikitextSyntaxHighlighterTests$PatternOverallTests > webLinkInSentence FAILED
+    java.lang.NoClassDefFoundError at WikitextSyntaxHighlighterTests.java:563
+        Caused by: java.lang.ExceptionInInitializerError at Pattern.java:2204
+
+WikitextSyntaxHighlighterTests$PatternOverallTests > italicsWordInSentence FAILED
+    java.lang.NoClassDefFoundError at WikitextSyntaxHighlighterTests.java:473
+        Caused by: java.lang.ExceptionInInitializerError at Pattern.java:2204
+
+WikitextSyntaxHighlighterTests$PatternOverallTests > struckThroughWordInSentence FAILED
+    java.lang.NoClassDefFoundError at WikitextSyntaxHighlighterTests.java:489
+        Caused by: java.lang.ExceptionInInitializerError at Pattern.java:2204
+
+WikitextSyntaxHighlighterTests$PatternOverallTests > subscriptTextInSentence FAILED
+    java.lang.NoClassDefFoundError at WikitextSyntaxHighlighterTests.java:595
+        Caused by: java.lang.ExceptionInInitializerError at Pattern.java:2204
+
+WikitextSyntaxHighlighterTests$PatternOverallTests > unorderedListHighlightings FAILED
+    java.lang.NoClassDefFoundError at WikitextSyntaxHighlighterTests.java:519
+        Caused by: java.lang.ExceptionInInitializerError at Pattern.java:2204
+
+WikitextSyntaxHighlighterTests$PatternOverallTests > superscriptTextInSentence FAILED
+    java.lang.NoClassDefFoundError at WikitextSyntaxHighlighterTests.java:587
+        Caused by: java.lang.ExceptionInInitializerError at Pattern.java:2204
+
+WikitextSyntaxHighlighterTests$PatternOverallTests > orderedListHighlightingsCharacters FAILED
+    java.lang.NoClassDefFoundError at WikitextSyntaxHighlighterTests.java:541
+        Caused by: java.lang.ExceptionInInitializerError at Pattern.java:2204
+
+WikitextSyntaxHighlighterTests$PatternOverallTests > crossWikiLink FAILED
+    java.lang.NoClassDefFoundError at WikitextSyntaxHighlighterTests.java:571
+        Caused by: java.lang.ExceptionInInitializerError at Pattern.java:2204
+
+WikitextSyntaxHighlighterTests$PatternOverallTests > preformattedWordInSentence FAILED
+    java.lang.NoClassDefFoundError at WikitextSyntaxHighlighterTests.java:497
+        Caused by: java.lang.ExceptionInInitializerError at Pattern.java:2204
+
+WikitextSyntaxHighlighterTests$PatternOverallTests > preformattedTextBlock FAILED
+    java.lang.NoClassDefFoundError at WikitextSyntaxHighlighterTests.java:505
+        Caused by: java.lang.ExceptionInInitializerError at Pattern.java:2204
+
+WikitextSyntaxHighlighterTests$PatternStrikethroughTest > strikethroughSingleCharacter FAILED
+    java.lang.NoClassDefFoundError at WikitextSyntaxHighlighterTests.java:405
+        Caused by: java.lang.ExceptionInInitializerError at Pattern.java:2204
+
+WikitextSyntaxHighlighterTests$PatternStrikethroughTest > strikethroughWithSpace FAILED
+    java.lang.NoClassDefFoundError at WikitextSyntaxHighlighterTests.java:405
+        Caused by: java.lang.ExceptionInInitializerError at Pattern.java:2204
+
+WikitextSyntaxHighlighterTests$PatternStrikethroughTest > strikethrough FAILED
+    java.lang.NoClassDefFoundError at WikitextSyntaxHighlighterTests.java:405
+        Caused by: java.lang.ExceptionInInitializerError at Pattern.java:2204
+
+WikitextSyntaxHighlighterTests$PatternStrikethroughTest > multipleStrikethrough FAILED
+    java.lang.NoClassDefFoundError at WikitextSyntaxHighlighterTests.java:405
+        Caused by: java.lang.ExceptionInInitializerError at Pattern.java:2204
+
+WikitextSyntaxHighlighterTests$PatternStrikethroughTest > strikethroughWithPrecedingTilde FAILED
+    java.lang.NoClassDefFoundError at WikitextSyntaxHighlighterTests.java:405
+        Caused by: java.lang.ExceptionInInitializerError at Pattern.java:2204
+
+WikitextSyntaxHighlighterTests$PatternStrikethroughTest > strikethroughWithTrailingTildeSkipsExtraTildes FAILED
+    java.lang.NoClassDefFoundError at WikitextSyntaxHighlighterTests.java:405
+        Caused by: java.lang.ExceptionInInitializerError at Pattern.java:2204
+
+WikitextSyntaxHighlighterTests$PatternStrikethroughTest > strikethroughWithSpaceAsLastCharacherShouldMatch FAILED
+    java.lang.NoClassDefFoundError at WikitextSyntaxHighlighterTests.java:405
+        Caused by: java.lang.ExceptionInInitializerError at Pattern.java:2204
+
+TestPlayground > documentOlderVersion PASSED
+
+GsTextUtilsTest > getNeighbourLineEndings_noEnd PASSED
+
+GsTextUtilsTest > getNeighbourLineEndings_noBegin PASSED
+
+GsTextUtilsTest > getNeighbourLineEndings_bothFound PASSED
+
+GsTextUtilsTest > getNeighbourLineEndings_noNl PASSED
+
+GsFileUtilsTest > getFilenameExtension PASSED
+
+GsFileUtilsTest > getNameWithoutExtension PASSED
+
+JavaPasswordbasedCryptionTest > createRoundtrip STANDARD_OUT
+    äöüßqwe€dahfla fa lfha fh ajdfh ajhf ahf ajhf lhdslahfsajlhfalh adjhf ahf lahlfhasdlא꜇世界您好
+    äöüßqwe€dahfla fa lfha fh ajdfh ajhf ahf ajhf lhdslahfsajlhfalh adjhf ahf lahlfhasdlא꜇世界您好
+
+JavaPasswordbasedCryptionTest > createRoundtrip PASSED
+
+JavaPasswordbasedCryptionTest > createRoundtripStrongPW STANDARD_OUT
+    äöüßqwe€dahfla fa lfha fh ajdfh ajhf ahf ajhf lhdslahfsajlhfalh adjhf ahf lahlfhasdlא꜇世界您好
+    äöüßqwe€dahfla fa lfha fh ajdfh ajhf ahf ajhf lhdslahfsajlhfalh adjhf ahf lahlfhasdlא꜇世界您好
+
+JavaPasswordbasedCryptionTest > createRoundtripStrongPW PASSED
+
+JavaPasswordbasedCryptionTest > getVersion PASSED
+
+MarkdownHighlighterPatternTest > testHighlightPattern PASSED
+
+UrlPatternTest > test PASSED
+
+176 tests completed, 68 failed
+
+> Task :app:testFlavorDefaultDebugUnitTest FAILED
+
+[Incubating] Problems report is available at: file:///home/runner/work/extended-notepad/extended-notepad/build/reports/problems/problems-report.html
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':app:testFlavorDefaultDebugUnitTest'.
+> There were failing tests. See the report at: file:///home/runner/work/extended-notepad/extended-notepad/app/build/reports/tests/testFlavorDefaultDebugUnitTest/index.html
+
+* Try:
+> Run with --scan to get full insights.
+
+* Exception is:
+org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':app:testFlavorDefaultDebugUnitTest'.
+	at org.gradle.api.internal.tasks.execution.ExecuteActionsTaskExecuter.lambda$executeIfValid$1(ExecuteActionsTaskExecuter.java:130)
+	at org.gradle.internal.Try$Failure.ifSuccessfulOrElse(Try.java:293)
+	at org.gradle.api.internal.tasks.execution.ExecuteActionsTaskExecuter.executeIfValid(ExecuteActionsTaskExecuter.java:128)
+	at org.gradle.api.internal.tasks.execution.ExecuteActionsTaskExecuter.execute(ExecuteActionsTaskExecuter.java:116)
+	at org.gradle.api.internal.tasks.execution.ProblemsTaskPathTrackingTaskExecuter.execute(ProblemsTaskPathTrackingTaskExecuter.java:40)
+	at org.gradle.api.internal.tasks.execution.FinalizePropertiesTaskExecuter.execute(FinalizePropertiesTaskExecuter.java:46)
+	at org.gradle.api.internal.tasks.execution.ResolveTaskExecutionModeExecuter.execute(ResolveTaskExecutionModeExecuter.java:51)
+	at org.gradle.api.internal.tasks.execution.SkipTaskWithNoActionsExecuter.execute(SkipTaskWithNoActionsExecuter.java:57)
+	at org.gradle.api.internal.tasks.execution.SkipOnlyIfTaskExecuter.execute(SkipOnlyIfTaskExecuter.java:74)
+	at org.gradle.api.internal.tasks.execution.CatchExceptionTaskExecuter.execute(CatchExceptionTaskExecuter.java:36)
+	at org.gradle.api.internal.tasks.execution.EventFiringTaskExecuter$1.executeTask(EventFiringTaskExecuter.java:77)
+	at org.gradle.api.internal.tasks.execution.EventFiringTaskExecuter$1.call(EventFiringTaskExecuter.java:55)
+	at org.gradle.api.internal.tasks.execution.EventFiringTaskExecuter$1.call(EventFiringTaskExecuter.java:52)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:210)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:205)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:67)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:60)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:167)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:60)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.call(DefaultBuildOperationRunner.java:54)
+	at org.gradle.api.internal.tasks.execution.EventFiringTaskExecuter.execute(EventFiringTaskExecuter.java:52)
+	at org.gradle.execution.plan.LocalTaskNodeExecutor.execute(LocalTaskNodeExecutor.java:42)
+	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph$InvokeNodeExecutorsAction.execute(DefaultTaskExecutionGraph.java:331)
+	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph$InvokeNodeExecutorsAction.execute(DefaultTaskExecutionGraph.java:318)
+	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph$BuildOperationAwareExecutionAction.lambda$execute$0(DefaultTaskExecutionGraph.java:314)
+	at org.gradle.internal.operations.CurrentBuildOperationRef.with(CurrentBuildOperationRef.java:85)
+	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph$BuildOperationAwareExecutionAction.execute(DefaultTaskExecutionGraph.java:314)
+	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph$BuildOperationAwareExecutionAction.execute(DefaultTaskExecutionGraph.java:303)
+	at org.gradle.execution.plan.DefaultPlanExecutor$ExecutorWorker.execute(DefaultPlanExecutor.java:459)
+	at org.gradle.execution.plan.DefaultPlanExecutor$ExecutorWorker.run(DefaultPlanExecutor.java:376)
+	at org.gradle.internal.concurrent.ExecutorPolicy$CatchAndRecordFailures.onExecute(ExecutorPolicy.java:64)
+	at org.gradle.internal.concurrent.AbstractManagedExecutor$1.run(AbstractManagedExecutor.java:48)
+Caused by: org.gradle.api.internal.exceptions.MarkedVerificationException: There were failing tests. See the report at: file:///home/runner/work/extended-notepad/extended-notepad/app/build/reports/tests/testFlavorDefaultDebugUnitTest/index.html
+	at org.gradle.api.tasks.testing.AbstractTestTask.handleTestFailures(AbstractTestTask.java:714)
+	at org.gradle.api.tasks.testing.AbstractTestTask.handleCollectedResults(AbstractTestTask.java:545)
+	at org.gradle.api.tasks.testing.AbstractTestTask.executeTests(AbstractTestTask.java:540)
+	at org.gradle.api.tasks.testing.Test.executeTests(Test.java:719)
+	at com.android.build.gradle.tasks.factory.AndroidUnitTest.executeTests(AndroidUnitTest.java:172)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at org.gradle.internal.reflect.JavaMethod.invoke(JavaMethod.java:125)
+	at org.gradle.api.internal.project.taskfactory.StandardTaskAction.doExecute(StandardTaskAction.java:58)
+	at org.gradle.api.internal.project.taskfactory.StandardTaskAction.execute(StandardTaskAction.java:51)
+	at org.gradle.api.internal.project.taskfactory.StandardTaskAction.execute(StandardTaskAction.java:29)
+	at org.gradle.api.internal.tasks.execution.TaskExecution$3.run(TaskExecution.java:244)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$1.execute(DefaultBuildOperationRunner.java:30)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$1.execute(DefaultBuildOperationRunner.java:27)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:67)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:60)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:167)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:60)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.run(DefaultBuildOperationRunner.java:48)
+	at org.gradle.api.internal.tasks.execution.TaskExecution.executeAction(TaskExecution.java:229)
+	at org.gradle.api.internal.tasks.execution.TaskExecution.executeActions(TaskExecution.java:212)
+	at org.gradle.api.internal.tasks.execution.TaskExecution.executeWithPreviousOutputFiles(TaskExecution.java:195)
+	at org.gradle.api.internal.tasks.execution.TaskExecution.execute(TaskExecution.java:162)
+	at org.gradle.internal.execution.steps.ExecuteStep.executeInternal(ExecuteStep.java:105)
+	at org.gradle.internal.execution.steps.ExecuteStep.access$000(ExecuteStep.java:44)
+	at org.gradle.internal.execution.steps.ExecuteStep$1.call(ExecuteStep.java:59)
+	at org.gradle.internal.execution.steps.ExecuteStep$1.call(ExecuteStep.java:56)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:210)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:205)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:67)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:60)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:167)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:60)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.call(DefaultBuildOperationRunner.java:54)
+	at org.gradle.internal.execution.steps.ExecuteStep.execute(ExecuteStep.java:56)
+	at org.gradle.internal.execution.steps.ExecuteStep.execute(ExecuteStep.java:44)
+	at org.gradle.internal.execution.steps.CancelExecutionStep.execute(CancelExecutionStep.java:42)
+	at org.gradle.internal.execution.steps.TimeoutStep.executeWithoutTimeout(TimeoutStep.java:75)
+	at org.gradle.internal.execution.steps.TimeoutStep.execute(TimeoutStep.java:55)
+	at org.gradle.internal.execution.steps.PreCreateOutputParentsStep.execute(PreCreateOutputParentsStep.java:50)
+	at org.gradle.internal.execution.steps.PreCreateOutputParentsStep.execute(PreCreateOutputParentsStep.java:28)
+	at org.gradle.internal.execution.steps.RemovePreviousOutputsStep.execute(RemovePreviousOutputsStep.java:67)
+	at org.gradle.internal.execution.steps.RemovePreviousOutputsStep.execute(RemovePreviousOutputsStep.java:37)
+	at org.gradle.internal.execution.steps.BroadcastChangingOutputsStep.execute(BroadcastChangingOutputsStep.java:61)
+	at org.gradle.internal.execution.steps.BroadcastChangingOutputsStep.execute(BroadcastChangingOutputsStep.java:26)
+	at org.gradle.internal.execution.steps.CaptureOutputsAfterExecutionStep.execute(CaptureOutputsAfterExecutionStep.java:69)
+	at org.gradle.internal.execution.steps.CaptureOutputsAfterExecutionStep.execute(CaptureOutputsAfterExecutionStep.java:46)
+	at org.gradle.internal.execution.steps.ResolveInputChangesStep.execute(ResolveInputChangesStep.java:40)
+	at org.gradle.internal.execution.steps.ResolveInputChangesStep.execute(ResolveInputChangesStep.java:29)
+	at org.gradle.internal.execution.steps.BuildCacheStep.executeWithoutCache(BuildCacheStep.java:189)
+	at org.gradle.internal.execution.steps.BuildCacheStep.lambda$execute$1(BuildCacheStep.java:75)
+	at org.gradle.internal.Either$Right.fold(Either.java:175)
+	at org.gradle.internal.execution.caching.CachingState.fold(CachingState.java:62)
+	at org.gradle.internal.execution.steps.BuildCacheStep.execute(BuildCacheStep.java:73)
+	at org.gradle.internal.execution.steps.BuildCacheStep.execute(BuildCacheStep.java:48)
+	at org.gradle.internal.execution.steps.StoreExecutionStateStep.execute(StoreExecutionStateStep.java:46)
+	at org.gradle.internal.execution.steps.StoreExecutionStateStep.execute(StoreExecutionStateStep.java:35)
+	at org.gradle.internal.execution.steps.SkipUpToDateStep.executeBecause(SkipUpToDateStep.java:75)
+	at org.gradle.internal.execution.steps.SkipUpToDateStep.lambda$execute$2(SkipUpToDateStep.java:53)
+	at org.gradle.internal.execution.steps.SkipUpToDateStep.execute(SkipUpToDateStep.java:53)
+	at org.gradle.internal.execution.steps.SkipUpToDateStep.execute(SkipUpToDateStep.java:35)
+	at org.gradle.internal.execution.steps.legacy.MarkSnapshottingInputsFinishedStep.execute(MarkSnapshottingInputsFinishedStep.java:37)
+	at org.gradle.internal.execution.steps.legacy.MarkSnapshottingInputsFinishedStep.execute(MarkSnapshottingInputsFinishedStep.java:27)
+	at org.gradle.internal.execution.steps.ResolveIncrementalCachingStateStep.executeDelegate(ResolveIncrementalCachingStateStep.java:49)
+	at org.gradle.internal.execution.steps.ResolveIncrementalCachingStateStep.executeDelegate(ResolveIncrementalCachingStateStep.java:27)
+	at org.gradle.internal.execution.steps.AbstractResolveCachingStateStep.execute(AbstractResolveCachingStateStep.java:71)
+	at org.gradle.internal.execution.steps.AbstractResolveCachingStateStep.execute(AbstractResolveCachingStateStep.java:39)
+	at org.gradle.internal.execution.steps.ResolveChangesStep.execute(ResolveChangesStep.java:65)
+	at org.gradle.internal.execution.steps.ResolveChangesStep.execute(ResolveChangesStep.java:36)
+	at org.gradle.internal.execution.steps.ValidateStep.execute(ValidateStep.java:107)
+	at org.gradle.internal.execution.steps.ValidateStep.execute(ValidateStep.java:56)
+	at org.gradle.internal.execution.steps.AbstractCaptureStateBeforeExecutionStep.execute(AbstractCaptureStateBeforeExecutionStep.java:64)
+	at org.gradle.internal.execution.steps.AbstractCaptureStateBeforeExecutionStep.execute(AbstractCaptureStateBeforeExecutionStep.java:43)
+	at org.gradle.internal.execution.steps.AbstractSkipEmptyWorkStep.executeWithNonEmptySources(AbstractSkipEmptyWorkStep.java:125)
+	at org.gradle.internal.execution.steps.AbstractSkipEmptyWorkStep.execute(AbstractSkipEmptyWorkStep.java:61)
+	at org.gradle.internal.execution.steps.AbstractSkipEmptyWorkStep.execute(AbstractSkipEmptyWorkStep.java:36)
+	at org.gradle.internal.execution.steps.legacy.MarkSnapshottingInputsStartedStep.execute(MarkSnapshottingInputsStartedStep.java:38)
+	at org.gradle.internal.execution.steps.LoadPreviousExecutionStateStep.execute(LoadPreviousExecutionStateStep.java:36)
+	at org.gradle.internal.execution.steps.LoadPreviousExecutionStateStep.execute(LoadPreviousExecutionStateStep.java:23)
+	at org.gradle.internal.execution.steps.HandleStaleOutputsStep.execute(HandleStaleOutputsStep.java:75)
+	at org.gradle.internal.execution.steps.HandleStaleOutputsStep.execute(HandleStaleOutputsStep.java:41)
+	at org.gradle.internal.execution.steps.AssignMutableWorkspaceStep.lambda$execute$0(AssignMutableWorkspaceStep.java:35)
+	at org.gradle.api.internal.tasks.execution.TaskExecution$4.withWorkspace(TaskExecution.java:289)
+	at org.gradle.internal.execution.steps.AssignMutableWorkspaceStep.execute(AssignMutableWorkspaceStep.java:31)
+	at org.gradle.internal.execution.steps.AssignMutableWorkspaceStep.execute(AssignMutableWorkspaceStep.java:22)
+	at org.gradle.internal.execution.steps.ChoosePipelineStep.execute(ChoosePipelineStep.java:40)
+	at org.gradle.internal.execution.steps.ChoosePipelineStep.execute(ChoosePipelineStep.java:23)
+	at org.gradle.internal.execution.steps.ExecuteWorkBuildOperationFiringStep.lambda$execute$2(ExecuteWorkBuildOperationFiringStep.java:67)
+	at org.gradle.internal.execution.steps.ExecuteWorkBuildOperationFiringStep.execute(ExecuteWorkBuildOperationFiringStep.java:67)
+	at org.gradle.internal.execution.steps.ExecuteWorkBuildOperationFiringStep.execute(ExecuteWorkBuildOperationFiringStep.java:39)
+	at org.gradle.internal.execution.steps.IdentityCacheStep.execute(IdentityCacheStep.java:46)
+	at org.gradle.internal.execution.steps.IdentityCacheStep.execute(IdentityCacheStep.java:34)
+	at org.gradle.internal.execution.steps.IdentifyStep.execute(IdentifyStep.java:48)
+	at org.gradle.internal.execution.steps.IdentifyStep.execute(IdentifyStep.java:35)
+	at org.gradle.internal.execution.impl.DefaultExecutionEngine$1.execute(DefaultExecutionEngine.java:61)
+	at org.gradle.api.internal.tasks.execution.ExecuteActionsTaskExecuter.executeIfValid(ExecuteActionsTaskExecuter.java:127)
+	at org.gradle.api.internal.tasks.execution.ExecuteActionsTaskExecuter.execute(ExecuteActionsTaskExecuter.java:116)
+	at org.gradle.api.internal.tasks.execution.ProblemsTaskPathTrackingTaskExecuter.execute(ProblemsTaskPathTrackingTaskExecuter.java:40)
+	at org.gradle.api.internal.tasks.execution.FinalizePropertiesTaskExecuter.execute(FinalizePropertiesTaskExecuter.java:46)
+	at org.gradle.api.internal.tasks.execution.ResolveTaskExecutionModeExecuter.execute(ResolveTaskExecutionModeExecuter.java:51)
+	at org.gradle.api.internal.tasks.execution.SkipTaskWithNoActionsExecuter.execute(SkipTaskWithNoActionsExecuter.java:57)
+	at org.gradle.api.internal.tasks.execution.SkipOnlyIfTaskExecuter.execute(SkipOnlyIfTaskExecuter.java:74)
+	at org.gradle.api.internal.tasks.execution.CatchExceptionTaskExecuter.execute(CatchExceptionTaskExecuter.java:36)
+	at org.gradle.api.internal.tasks.execution.EventFiringTaskExecuter$1.executeTask(EventFiringTaskExecuter.java:77)
+	at org.gradle.api.internal.tasks.execution.EventFiringTaskExecuter$1.call(EventFiringTaskExecuter.java:55)
+	at org.gradle.api.internal.tasks.execution.EventFiringTaskExecuter$1.call(EventFiringTaskExecuter.java:52)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:210)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:205)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:67)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:60)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:167)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:60)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.call(DefaultBuildOperationRunner.java:54)
+	at org.gradle.api.internal.tasks.execution.EventFiringTaskExecuter.execute(EventFiringTaskExecuter.java:52)
+	at org.gradle.execution.plan.LocalTaskNodeExecutor.execute(LocalTaskNodeExecutor.java:42)
+	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph$InvokeNodeExecutorsAction.execute(DefaultTaskExecutionGraph.java:331)
+	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph$InvokeNodeExecutorsAction.execute(DefaultTaskExecutionGraph.java:318)
+	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph$BuildOperationAwareExecutionAction.lambda$execute$0(DefaultTaskExecutionGraph.java:314)
+	at org.gradle.internal.operations.CurrentBuildOperationRef.with(CurrentBuildOperationRef.java:85)
+	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph$BuildOperationAwareExecutionAction.execute(DefaultTaskExecutionGraph.java:314)
+	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph$BuildOperationAwareExecutionAction.execute(DefaultTaskExecutionGraph.java:303)
+	at org.gradle.execution.plan.DefaultPlanExecutor$ExecutorWorker.execute(DefaultPlanExecutor.java:459)
+	at org.gradle.execution.plan.DefaultPlanExecutor$ExecutorWorker.run(DefaultPlanExecutor.java:376)
+	at org.gradle.internal.concurrent.ExecutorPolicy$CatchAndRecordFailures.onExecute(ExecutorPolicy.java:64)
+	at org.gradle.internal.concurrent.AbstractManagedExecutor$1.run(AbstractManagedExecutor.java:48)
+
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/8.13/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+BUILD FAILED in 21s
+22 actionable tasks: 7 executed, 15 up-to-date
