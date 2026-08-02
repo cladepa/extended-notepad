@@ -113,6 +113,7 @@ public class DocumentEditAndViewFragment extends MarkorBaseFragment implements F
     private LineNumbersView _lineNumbersView;
     private TextView _searchResultTextView;
     private Document _document;
+    private net.gsantner.markor.util.ClipboardBufferHelper.SystemClipboardBridge _clipboardBridge;
     private FormatRegistry _format;
     private MarkorContextUtils _cu;
     private TextViewUndoRedo _editTextUndoRedoHelper;
@@ -318,12 +319,20 @@ public class DocumentEditAndViewFragment extends MarkorBaseFragment implements F
         if (_editTextUndoRedoHelper != null && _editTextUndoRedoHelper.getTextView() != _hlEditor) {
             _editTextUndoRedoHelper.setTextView(_hlEditor);
         }
+        if (getActivity() != null) {
+            _clipboardBridge = new net.gsantner.markor.util.ClipboardBufferHelper.SystemClipboardBridge(getActivity());
+            _clipboardBridge.register();
+        }
         super.onResume();
     }
 
     @Override
     public void onPause() {
         saveDocument(false);
+        if (_clipboardBridge != null) {
+            _clipboardBridge.unregister();
+            _clipboardBridge = null;
+        }
         if (_webView != null) {
             _webView.onPause();
             _appSettings.setLastViewScrollY(_document.path, _webView.getScrollY());
@@ -739,6 +748,18 @@ public class DocumentEditAndViewFragment extends MarkorBaseFragment implements F
                     } else {
                         _hlEditor.setTextSize(TypedValue.COMPLEX_UNIT_SP, (float) newSize);
                         _appSettings.setDocumentFontSize(_document.path, newSize);
+                    }
+                });
+                return true;
+            }
+            case R.id.action_paste_from_clipboard_history: {
+                MarkorDialogFactory.showClipboardHistoryDialog(activity, (entry) -> {
+                    final String text = net.gsantner.markor.util.ClipboardBufferHelper.readContent(entry.file);
+                    if (text != null && _hlEditor != null) {
+                        final android.text.Editable editable = _hlEditor.getText();
+                        final int start = _hlEditor.getSelectionStart();
+                        final int end = _hlEditor.getSelectionEnd();
+                        editable.replace(Math.max(0, Math.min(start, end)), Math.max(start, end), text);
                     }
                 });
                 return true;

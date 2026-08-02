@@ -920,6 +920,42 @@ public class MarkorDialogFactory {
         GsSearchOrCustomTextDialog.showMultiChoiceDialogWithSearchFilterUI(activity, dopt);
     }
 
+    public static void showClipboardHistoryDialog(final Activity activity, final GsCallback.a1<net.gsantner.markor.util.ClipboardBufferHelper.Entry> callback) {
+        final List<net.gsantner.markor.util.ClipboardBufferHelper.Entry> entries =
+                net.gsantner.markor.util.ClipboardBufferHelper.listEntries(activity);
+
+        if (entries.isEmpty()) {
+            Toast.makeText(activity, R.string.clipboard_history_empty, Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        final java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("dd.MM HH:mm", java.util.Locale.getDefault());
+        final List<String> labels = new ArrayList<>();
+        final java.util.Map<String, net.gsantner.markor.util.ClipboardBufferHelper.Entry> byLabel = new java.util.LinkedHashMap<>();
+        for (final net.gsantner.markor.util.ClipboardBufferHelper.Entry e : entries) {
+            String label = sdf.format(new java.util.Date(e.timestampMillis)) + "  ·  " + e.readPreview(60);
+            while (byLabel.containsKey(label)) {
+                label = label + " "; // keep labels unique for the picker
+            }
+            labels.add(label);
+            byLabel.put(label, e);
+        }
+
+        final DialogOptions dopt = baseConf(activity);
+        dopt.data = labels;
+        dopt.isSearchEnabled = entries.size() > 10;
+        dopt.dialogHeightDp = 400;
+        dopt.titleText = R.string.clipboard_history;
+        dopt.dialogWidthDp = WindowManager.LayoutParams.MATCH_PARENT;
+        dopt.callback = (selectedLabel -> {
+            final net.gsantner.markor.util.ClipboardBufferHelper.Entry entry = byLabel.get(selectedLabel);
+            if (entry != null) {
+                callback.callback(entry);
+            }
+        });
+        GsSearchOrCustomTextDialog.showMultiChoiceDialogWithSearchFilterUI(activity, dopt);
+    }
+
     public static void showEncodingDialog(final Activity activity, final java.nio.charset.Charset currentCharset, final GsCallback.a1<java.nio.charset.Charset> callback) {
         final DialogOptions dopt = baseConf(activity);
         final List<String> labels = new ArrayList<>(net.gsantner.markor.util.CharsetHelper.COMMON_CHARSETS.keySet());

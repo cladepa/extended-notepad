@@ -119,6 +119,29 @@ public class AppSettings extends GsSharedPreferencesPropertyBackend {
         setBool(R.string.pref_key__default_bom, hasBom);
     }
 
+    public File getDefaultClipboardBufferDirectory() {
+        return GsFileUtils.join(
+                Environment.getExternalStorageDirectory(),
+                "Documents",
+                rstr(R.string.app_name).toLowerCase(Locale.ROOT) + "_clipboard");
+    }
+
+    public File getClipboardBufferDirectory() {
+        return new File(getString(R.string.pref_key__clipboard_buffer_directory, getDefaultClipboardBufferDirectory().getAbsolutePath()));
+    }
+
+    public void setClipboardBufferDirectory(final File file) {
+        setString(R.string.pref_key__clipboard_buffer_directory, GsFileUtils.getPath(file));
+    }
+
+    public int getClipboardBufferMaxEntries() {
+        return getInt(R.string.pref_key__clipboard_buffer_max_entries, 50);
+    }
+
+    public void setClipboardBufferMaxEntries(final int maxEntries) {
+        setInt(R.string.pref_key__clipboard_buffer_max_entries, maxEntries);
+    }
+
     public File getDefaultNotebookFile() {
         return GsFileUtils.join(
                 Environment.getExternalStorageDirectory(),

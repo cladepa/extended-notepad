@@ -231,6 +231,11 @@
                 android:title="@string/send_debug_log"
                 android:visible="false"
                 app:showAsAction="never" />
+            <item
+                android:id="@+id/action_paste_from_clipboard_history"
+                android:icon="@drawable/ic_history_black_24dp"
+                android:title="@string/clipboard_history"
+                app:showAsAction="never" />
         </menu>
     </item>
     <item

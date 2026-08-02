@@ -62,6 +62,8 @@ work. If not, see <https://creativecommons.org/publicdomain/zero/1.0/>.
     <string name="encoding_write_bom">Write byte-order mark (BOM)</string>
     <string name="encoding_reload_confirm">Re-read file with this encoding? Unsaved changes will be lost.</string>
     <string name="encoding_current">Current: %1$s%2$s</string>
+    <string name="clipboard_history">Clipboard History</string>
+    <string name="clipboard_history_empty">Clipboard history is empty</string>
     <string name="render_rtl_language">Render for right-to-left languages</string>
     <string name="error_cannot_create_notebook_dir__appspecific">Error: Cannot create notebook directory</string>
 
