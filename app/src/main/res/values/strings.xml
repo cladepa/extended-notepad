@@ -69,7 +69,6 @@ work. If not, see <https://creativecommons.org/publicdomain/zero/1.0/>.
     <string name="cut">Cut</string>
     <string name="paste">Paste</string>
     <string name="paste_from_clipboard_history">Paste from history…</string>
-    <string name="select">Select…</string>
     <string name="select_word">Select word</string>
     <string name="select_line">Select line</string>
     <string name="select_to_line_end">Select to end of line</string>

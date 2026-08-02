@@ -57,6 +57,7 @@ jobs:
     - name: "Build: Extended Notepad APK (Default flavor, debug)"
       if: always()
       run: |
+        set -eo pipefail
         chmod +x gradlew
         mkdir -p dist/log
         ./gradlew --no-daemon --stacktrace assembleFlavorDefaultDebug 2>&1 | tee dist/log/gradle-extnotepad.log
