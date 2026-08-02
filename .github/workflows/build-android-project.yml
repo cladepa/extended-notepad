@@ -55,6 +55,7 @@ jobs:
       run: make clean all
 
     - name: "Build: Extended Notepad APK (Default flavor, debug)"
+      id: build_apk
       if: always()
       run: |
         set -eo pipefail
@@ -82,6 +83,31 @@ jobs:
         name: "android-apk"
         path: |
           dist/*.apk
+
+    - name: "Publish: APK to apk-latest branch (direct download link)"
+      if: always() && steps.build_apk.outcome == 'success'
+      run: |
+        set -eo pipefail
+        APK_SRC=$(find dist -maxdepth 1 -iname '*.apk' | head -n1)
+        if [ -z "$APK_SRC" ]; then
+          echo "No APK found in dist/, skipping publish"
+          exit 0
+        fi
+        mkdir -p /tmp/apk-latest-work
+        cd /tmp/apk-latest-work
+        git clone https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git repo
+        cd repo
+        git checkout apk-latest 2>/dev/null || git checkout --orphan apk-latest
+        git rm -rf . 2>/dev/null || true
+        cp "$GITHUB_WORKSPACE/$APK_SRC" extended-notepad-debug.apk
+        echo "commit: ${{ github.sha }}" > BUILD_INFO.txt
+        echo "run: ${{ github.run_id }}" >> BUILD_INFO.txt
+        echo "time: $(date -u)" >> BUILD_INFO.txt
+        git config user.email "ci@cladepa"
+        git config user.name "CI Bot"
+        git add -A
+        git commit -m "apk for commit ${{ github.sha }}" -q
+        git push origin apk-latest --force
 
     - name: "Diagnostics: Push failure logs to ci-logs branch"
       if: failure()
