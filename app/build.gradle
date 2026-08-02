@@ -151,6 +151,10 @@ dependencies {
     // https://mvnrepository.com/artifact/com.google.code.gson/gson
     implementation 'com.google.code.gson:gson:2.10.1'
 
+    // Charset auto-detection (Extended Notepad encoding feature)
+    // https://mvnrepository.com/artifact/com.github.albfernandez/juniversalchardet
+    implementation 'com.github.albfernandez:juniversalchardet:2.5.0'
+
     // Processors
     def anpros = []
     for (anpro in anpros) {

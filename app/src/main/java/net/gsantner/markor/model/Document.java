@@ -13,7 +13,6 @@ import android.content.SharedPreferences;
 import android.os.Build;
 import android.text.TextUtils;
 import android.util.Log;
-import android.util.Pair;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -27,6 +26,7 @@ import net.gsantner.markor.activity.MainActivity;
 import net.gsantner.markor.format.FormatRegistry;
 import net.gsantner.markor.format.markdown.MarkdownTextConverter;
 import net.gsantner.markor.util.MarkorContextUtils;
+import net.gsantner.markor.util.CharsetHelper;
 import net.gsantner.opoc.util.GsContextUtils;
 import net.gsantner.opoc.util.GsFileUtils;
 
@@ -174,6 +174,25 @@ public class Document implements Serializable {
         return isEncrypted(file);
     }
 
+    public java.nio.charset.Charset getCharset() {
+        return (_fileInfo != null && _fileInfo.charset != null) ? _fileInfo.charset : java.nio.charset.StandardCharsets.UTF_8;
+    }
+
+    public boolean hasBom() {
+        return _fileInfo != null && _fileInfo.hasBom;
+    }
+
+    /**
+     * Remember a manually-chosen charset/BOM for this file (so future opens skip
+     * auto-detection for it) and force the next loadContent() call to re-read the
+     * file from disk with the new charset. Caller is responsible for reloading
+     * (e.g. by calling the fragment's reload()), discarding any unsaved edits.
+     */
+    public void setCharsetOverride(final Context context, final java.nio.charset.Charset charset, final boolean hasBom) {
+        CharsetHelper.saveForFile(context, file, charset, hasBom);
+        resetChangeTracking();
+    }
+
     private void setContentHash(final CharSequence s) {
         _lastLength = s != null ? s.length() : 0;
         _lastHash = s != null ? GsFileUtils.crc32(s) : 0;
@@ -209,13 +228,25 @@ public class Document implements Serializable {
             }
         } else {
             // We try to load 2x. If both times fail, we return null
-            Pair<String, GsFileUtils.FileInfo> result = GsFileUtils.readTextFileFast(file);
-            if (result.second.ioError) {
+            byte[] raw = GsFileUtils.readBinaryFile(file);
+            boolean ioError = raw.length == 0 && file.length() > 0;
+            if (ioError) {
                 Log.i(Document.class.getName(), "loadDocument:  File " + file + " read error, trying again.");
-                result = GsFileUtils.readTextFileFast(file);
+                raw = GsFileUtils.readBinaryFile(file);
+                ioError = raw.length == 0 && file.length() > 0;
             }
-            content = result.first;
-            _fileInfo = result.second;
+
+            _fileInfo = new GsFileUtils.FileInfo();
+            _fileInfo.ioError = ioError;
+
+            if (!ioError) {
+                final CharsetHelper.Result det = CharsetHelper.detect(context, file, raw, AppSettings.get(context).getDefaultCharset());
+                _fileInfo.charset = det.charset;
+                _fileInfo.hasBom = det.hasBom;
+                content = new String(raw, det.skipBytes, raw.length - det.skipBytes, det.charset);
+            } else {
+                content = "";
+            }
         }
 
         if (MainActivity.IS_DEBUG_ENABLED) {
@@ -298,7 +329,7 @@ public class Document implements Serializable {
             if (isEncrypted() && (pw = getPasswordWithWarning(context)) != null) {
                 contentAsBytes = new JavaPasswordbasedCryption(Build.VERSION.SDK_INT, new SecureRandom()).encrypt(content.toString(), pw);
             } else {
-                contentAsBytes = content.toString().getBytes();
+                contentAsBytes = content.toString().getBytes(getCharset());
             }
 
             cu = cu != null ? cu : new MarkorContextUtils(context);
@@ -307,9 +338,7 @@ public class Document implements Serializable {
                 cu.writeFile(context, file, false, (fileOpened, fos) -> {
                     try {
                         if (_fileInfo != null && _fileInfo.hasBom) {
-                            fos.write(0xEF);
-                            fos.write(0xBB);
-                            fos.write(0xBF);
+                            fos.write(GsFileUtils.getBomBytesForCharset(getCharset()));
                         }
                         fos.write(contentAsBytes);
 

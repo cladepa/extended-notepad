@@ -103,6 +103,13 @@
                 android:title="@string/font_size"
                 app:showAsAction="never" />
 
+            <item
+                android:id="@+id/action_set_encoding"
+                android:checkable="false"
+                android:icon="@drawable/ic_translate_black_24dp"
+                android:title="@string/encoding"
+                app:showAsAction="never" />
+
             <!-- Format menu -->
             <item
                 android:id="@+id/submenu_format_selection"

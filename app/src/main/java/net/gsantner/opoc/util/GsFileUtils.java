@@ -40,6 +40,7 @@ import java.io.OutputStream;
 import java.io.Serializable;
 import java.net.URLConnection;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.FileSystems;
 import java.nio.file.FileVisitResult;
 import java.nio.file.Files;
@@ -84,6 +85,7 @@ public class GsFileUtils {
     public static class FileInfo implements Serializable {
         public boolean hasBom = false;
         public boolean ioError = false;
+        public transient Charset charset = StandardCharsets.UTF_8;
     }
 
     public static Pair<String, FileInfo> readInputStreamFast(final InputStream inputStream, @Nullable FileInfo info) {
@@ -255,9 +257,7 @@ public class GsFileUtils {
     public static boolean writeFile(final File file, final byte[] data, final FileInfo options) {
         try (final FileOutputStream output = new FileOutputStream(file, false)) {
             if (options != null && options.hasBom) {
-                output.write(0xEF);
-                output.write(0xBB);
-                output.write(0xBF);
+                output.write(getBomBytesForCharset(options.charset));
             }
             output.write(data);
             output.flush();
@@ -268,8 +268,29 @@ public class GsFileUtils {
         }
     }
 
+    /**
+     * Return the byte-order-mark sequence for a given charset, or an empty array
+     * if the charset has no standard BOM (e.g. single-byte legacy encodings).
+     */
+    public static byte[] getBomBytesForCharset(final Charset charset) {
+        final String name = (charset != null ? charset.name() : "UTF-8").toUpperCase(Locale.ROOT);
+        if (name.contains("UTF-8")) {
+            return new byte[]{(byte) 0xEF, (byte) 0xBB, (byte) 0xBF};
+        } else if (name.contains("UTF-16LE")) {
+            return new byte[]{(byte) 0xFF, (byte) 0xFE};
+        } else if (name.contains("UTF-16BE")) {
+            return new byte[]{(byte) 0xFE, (byte) 0xFF};
+        } else if (name.contains("UTF-32LE")) {
+            return new byte[]{(byte) 0xFF, (byte) 0xFE, 0, 0};
+        } else if (name.contains("UTF-32BE")) {
+            return new byte[]{0, 0, (byte) 0xFE, (byte) 0xFF};
+        }
+        return new byte[0];
+    }
+
     public static boolean writeFile(final File file, final String data, final FileInfo options) {
-        return writeFile(file, data.getBytes(), options);
+        final Charset cs = (options != null && options.charset != null) ? options.charset : StandardCharsets.UTF_8;
+        return writeFile(file, data.getBytes(cs), options);
     }
 
     public static boolean copyFile(final File src, final File dst) {

@@ -142,6 +142,8 @@ work. If not, see <https://creativecommons.org/publicdomain/zero/1.0/>.
     <string name="pref_key__is_dynamic_highlighting_activated" translatable="false">pref_key__is_dynamic_highlighting_activated</string>
     <string name="pref_key__load_last_directory_at_startup" translatable="false">pref_key__load_last_directory_at_startup</string>
     <string name="pref_key__notebook_directory" translatable="false">pref_key__notebook_directory</string>
+    <string name="pref_key__default_charset" translatable="false">pref_key__default_charset</string>
+    <string name="pref_key__default_bom" translatable="false">pref_key__default_bom</string>
     <string name="pref_key__last_opened_directory" translatable="false">pref_key__last_opened_directory</string>
     <string name="pref_key__font_family" translatable="false">pref_key__font_family</string>
     <string name="pref_key__editor_font_size" translatable="false">pref_key__editor_font_size</string>

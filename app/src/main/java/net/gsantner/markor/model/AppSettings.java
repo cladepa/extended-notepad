@@ -98,6 +98,27 @@ public class AppSettings extends GsSharedPreferencesPropertyBackend {
         return new File(getString(R.string.pref_key__notebook_directory, getDefaultNotebookFile().getAbsolutePath()));
     }
 
+    public java.nio.charset.Charset getDefaultCharset() {
+        final String name = getString(R.string.pref_key__default_charset, "UTF-8");
+        try {
+            return java.nio.charset.Charset.forName(name);
+        } catch (Exception e) {
+            return java.nio.charset.StandardCharsets.UTF_8;
+        }
+    }
+
+    public void setDefaultCharset(final java.nio.charset.Charset charset) {
+        setString(R.string.pref_key__default_charset, charset.name());
+    }
+
+    public boolean getDefaultBom() {
+        return getBool(R.string.pref_key__default_bom, false);
+    }
+
+    public void setDefaultBom(final boolean hasBom) {
+        setBool(R.string.pref_key__default_bom, hasBom);
+    }
+
     public File getDefaultNotebookFile() {
         return GsFileUtils.join(
                 Environment.getExternalStorageDirectory(),

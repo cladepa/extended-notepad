@@ -920,6 +920,29 @@ public class MarkorDialogFactory {
         GsSearchOrCustomTextDialog.showMultiChoiceDialogWithSearchFilterUI(activity, dopt);
     }
 
+    public static void showEncodingDialog(final Activity activity, final java.nio.charset.Charset currentCharset, final GsCallback.a1<java.nio.charset.Charset> callback) {
+        final DialogOptions dopt = baseConf(activity);
+        final List<String> labels = new ArrayList<>(net.gsantner.markor.util.CharsetHelper.COMMON_CHARSETS.keySet());
+        final String currentLabel = net.gsantner.markor.util.CharsetHelper.labelFor(currentCharset);
+        dopt.callback = (selectedLabel -> {
+            final java.nio.charset.Charset cs = net.gsantner.markor.util.CharsetHelper.COMMON_CHARSETS.get(selectedLabel);
+            if (cs != null) {
+                callback.callback(cs);
+            }
+        });
+        dopt.data = labels;
+        dopt.highlightData = Collections.singletonList(currentLabel);
+        final int idx = labels.indexOf(currentLabel);
+        if (idx >= 0) {
+            dopt.state.listPosition = idx;
+        }
+        dopt.isSearchEnabled = false;
+        dopt.dialogHeightDp = 400;
+        dopt.titleText = R.string.encoding;
+        dopt.dialogWidthDp = WindowManager.LayoutParams.WRAP_CONTENT;
+        GsSearchOrCustomTextDialog.showMultiChoiceDialogWithSearchFilterUI(activity, dopt);
+    }
+
     public static void showFontSizeDialog(final Activity activity, final int currentSize, final GsCallback.a1<Integer> callback) {
         final DialogOptions dopt = baseConf(activity);
         dopt.callback = (selectedDialogValueAsString -> callback.callback(Integer.parseInt(selectedDialogValueAsString)));

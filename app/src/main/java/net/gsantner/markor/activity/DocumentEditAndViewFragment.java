@@ -41,6 +41,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.FragmentActivity;
@@ -739,6 +740,32 @@ public class DocumentEditAndViewFragment extends MarkorBaseFragment implements F
                         _hlEditor.setTextSize(TypedValue.COMPLEX_UNIT_SP, (float) newSize);
                         _appSettings.setDocumentFontSize(_document.path, newSize);
                     }
+                });
+                return true;
+            }
+            case R.id.action_set_encoding: {
+                final java.nio.charset.Charset current = _document.getCharset();
+                MarkorDialogFactory.showEncodingDialog(activity, current, (newCharset) -> {
+                    final String csName = newCharset.name().toUpperCase(java.util.Locale.ROOT);
+                    final boolean bomCapable = csName.contains("UTF-8") || csName.contains("UTF-16") || csName.contains("UTF-32");
+                    final boolean[] bomChoice = {bomCapable && _document.hasBom()};
+
+                    final AlertDialog.Builder builder = new AlertDialog.Builder(activity)
+                            .setTitle(R.string.encoding)
+                            .setMessage(R.string.encoding_reload_confirm)
+                            .setPositiveButton(android.R.string.ok, (dialog, which) -> {
+                                _document.setCharsetOverride(activity, newCharset, bomChoice[0]);
+                                reload();
+                            })
+                            .setNegativeButton(android.R.string.cancel, null);
+
+                    if (bomCapable) {
+                        builder.setMultiChoiceItems(
+                                new CharSequence[]{getString(R.string.encoding_write_bom)},
+                                new boolean[]{bomChoice[0]},
+                                (dialog, which, isChecked) -> bomChoice[0] = isChecked);
+                    }
+                    builder.show();
                 });
                 return true;
             }
