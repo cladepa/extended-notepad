@@ -114,6 +114,9 @@ public class DocumentEditAndViewFragment extends MarkorBaseFragment implements F
     private TextView _searchResultTextView;
     private Document _document;
     private net.gsantner.markor.util.ClipboardBufferHelper.SystemClipboardBridge _clipboardBridge;
+    private final android.os.Handler _ctxMenuLongPressHandler = new android.os.Handler(android.os.Looper.getMainLooper());
+    private boolean _ctxMenuLongPressTriggered = false;
+    private static final int CTX_MENU_LONG_PRESS_MS = 500;
     private FormatRegistry _format;
     private MarkorContextUtils _cu;
     private TextViewUndoRedo _editTextUndoRedoHelper;
@@ -224,6 +227,12 @@ public class DocumentEditAndViewFragment extends MarkorBaseFragment implements F
         _hlEditor.addTextChangedListener(GsTextWatcherAdapter.after(s -> debounced.run()));
         _hlEditor.setOnDispatchKeyListener(this::onEditorKeyDown);
 
+        // Custom context menu (spec item 4): long-press OK on remote, or long-click in air-mouse mode
+        _hlEditor.setOnLongClickListener(v -> {
+            showEditorContextMenu();
+            return true;
+        });
+
         // We set the keyboard to be hidden if it was hidden when we lost focus
         // This works well to preserve keyboard state.
         if (activity != null) {
@@ -329,6 +338,7 @@ public class DocumentEditAndViewFragment extends MarkorBaseFragment implements F
     @Override
     public void onPause() {
         saveDocument(false);
+        _ctxMenuLongPressHandler.removeCallbacksAndMessages(null);
         if (_clipboardBridge != null) {
             _clipboardBridge.unregister();
             _clipboardBridge = null;
@@ -435,6 +445,25 @@ public class DocumentEditAndViewFragment extends MarkorBaseFragment implements F
      * @return {@code false} if the key press event was not be handled, {@code true} if it was consumed here.
      */
     private boolean onEditorKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_DPAD_CENTER || keyCode == KeyEvent.KEYCODE_ENTER) {
+            if (event.getAction() == KeyEvent.ACTION_DOWN) {
+                if (event.getRepeatCount() == 0) {
+                    _ctxMenuLongPressTriggered = false;
+                    _ctxMenuLongPressHandler.removeCallbacksAndMessages(null);
+                    _ctxMenuLongPressHandler.postDelayed(() -> {
+                        _ctxMenuLongPressTriggered = true;
+                        showEditorContextMenu();
+                    }, CTX_MENU_LONG_PRESS_MS);
+                }
+                // Don't consume - let a short press still behave normally (newline etc.)
+            } else if (event.getAction() == KeyEvent.ACTION_UP) {
+                _ctxMenuLongPressHandler.removeCallbacksAndMessages(null);
+                if (_ctxMenuLongPressTriggered) {
+                    _ctxMenuLongPressTriggered = false;
+                    return true; // swallow the release so it doesn't also trigger the default short-press action
+                }
+            }
+        }
         if (event.getAction() == KeyEvent.ACTION_DOWN) {
             return _format != null && _format.getActions().onKeyPress(_hlEditor, keyCode, event, this);
         }
@@ -521,6 +550,179 @@ public class DocumentEditAndViewFragment extends MarkorBaseFragment implements F
                 Toast.makeText(getActivity(), "✔", Toast.LENGTH_SHORT).show();
             }
         }
+    }
+
+    /**
+     * Custom context menu shown on long-press of the remote's OK button (D-pad center / Enter),
+     * or long-click in air-mouse mode. Replaces the standard Android text-selection popup, which
+     * is awkward to operate with a TV remote.
+     */
+    private void showEditorContextMenu() {
+        final Activity activity = getActivity();
+        if (activity == null || _hlEditor == null) {
+            return;
+        }
+
+        final String[] items = new String[]{
+                getString(R.string.open_container),
+                getString(R.string.copy),
+                getString(R.string.cut),
+                getString(R.string.paste),
+                getString(R.string.paste_from_clipboard_history),
+                getString(R.string.select),
+                getString(R.string.undo),
+                getString(R.string.share),
+                getString(R.string.reload),
+                getString(R.string.save),
+        };
+
+        new AlertDialog.Builder(activity)
+                .setTitle(R.string.context_menu)
+                .setItems(items, (dialog, which) -> {
+                    switch (which) {
+                        case 0:
+                            _hlEditor.postDelayed(() -> MainActivity.launch(activity, _document.file, false), 250);
+                            break;
+                        case 1:
+                            ctxCopy();
+                            break;
+                        case 2:
+                            ctxCut();
+                            break;
+                        case 3:
+                            ctxPaste();
+                            break;
+                        case 4:
+                            MarkorDialogFactory.showClipboardHistoryDialog(activity, (entry) -> {
+                                final String text = net.gsantner.markor.util.ClipboardBufferHelper.readContent(entry.file);
+                                if (text != null) {
+                                    ctxReplaceSelection(text);
+                                }
+                            });
+                            break;
+                        case 5:
+                            showSelectSubmenu();
+                            break;
+                        case 6:
+                            undo();
+                            break;
+                        case 7:
+                            if (saveDocument(false)) {
+                                _cu.shareText(activity, getTextString(), GsContextUtils.MIME_TEXT_PLAIN);
+                            }
+                            break;
+                        case 8:
+                            reload();
+                            break;
+                        case 9:
+                            saveDocument(true);
+                            break;
+                    }
+                })
+                .show();
+    }
+
+    private void showSelectSubmenu() {
+        final Activity activity = getActivity();
+        if (activity == null || _hlEditor == null) {
+            return;
+        }
+        final String[] items = new String[]{
+                getString(R.string.select_all),
+                getString(R.string.select_word),
+                getString(R.string.select_line),
+                getString(R.string.select_to_line_end),
+                getString(R.string.select_to_line_start),
+        };
+        new AlertDialog.Builder(activity)
+                .setTitle(R.string.select)
+                .setItems(items, (dialog, which) -> {
+                    final CharSequence text = _hlEditor.getText();
+                    final int cursor = _hlEditor.getSelectionStart();
+                    switch (which) {
+                        case 0:
+                            _hlEditor.selectAll();
+                            break;
+                        case 1:
+                            TextViewUtils.selectWord(_hlEditor);
+                            break;
+                        case 2: {
+                            final int ls = TextViewUtils.getLineStart(text, cursor);
+                            final int le = TextViewUtils.getLineEnd(text, cursor);
+                            _hlEditor.setSelection(ls, le);
+                            break;
+                        }
+                        case 3: {
+                            final int le = TextViewUtils.getLineEnd(text, cursor);
+                            _hlEditor.setSelection(cursor, le);
+                            break;
+                        }
+                        case 4: {
+                            final int ls = TextViewUtils.getLineStart(text, cursor);
+                            _hlEditor.setSelection(ls, cursor);
+                            break;
+                        }
+                    }
+                })
+                .show();
+    }
+
+    private void ctxCopy() {
+        final Activity activity = getActivity();
+        if (activity == null) {
+            return;
+        }
+        final int start = _hlEditor.getSelectionStart();
+        final int end = _hlEditor.getSelectionEnd();
+        if (start < 0 || end < 0 || start == end) {
+            Toast.makeText(activity, R.string.nothing_selected, Toast.LENGTH_SHORT).show();
+            return;
+        }
+        final String sel = _hlEditor.getText().subSequence(Math.min(start, end), Math.max(start, end)).toString();
+        final android.content.ClipboardManager cm = (android.content.ClipboardManager) activity.getSystemService(Context.CLIPBOARD_SERVICE);
+        if (cm != null) {
+            cm.setPrimaryClip(android.content.ClipData.newPlainText("text", sel));
+        }
+    }
+
+    private void ctxCut() {
+        final Activity activity = getActivity();
+        if (activity == null) {
+            return;
+        }
+        final int start = _hlEditor.getSelectionStart();
+        final int end = _hlEditor.getSelectionEnd();
+        if (start < 0 || end < 0 || start == end) {
+            Toast.makeText(activity, R.string.nothing_selected, Toast.LENGTH_SHORT).show();
+            return;
+        }
+        final int s = Math.min(start, end), e = Math.max(start, end);
+        final String sel = _hlEditor.getText().subSequence(s, e).toString();
+        final android.content.ClipboardManager cm = (android.content.ClipboardManager) activity.getSystemService(Context.CLIPBOARD_SERVICE);
+        if (cm != null) {
+            cm.setPrimaryClip(android.content.ClipData.newPlainText("text", sel));
+        }
+        _hlEditor.getText().delete(s, e);
+    }
+
+    private void ctxPaste() {
+        final Activity activity = getActivity();
+        if (activity == null) {
+            return;
+        }
+        final android.content.ClipboardManager cm = (android.content.ClipboardManager) activity.getSystemService(Context.CLIPBOARD_SERVICE);
+        if (cm != null && cm.hasPrimaryClip() && cm.getPrimaryClip() != null && cm.getPrimaryClip().getItemCount() > 0) {
+            final CharSequence text = cm.getPrimaryClip().getItemAt(0).coerceToText(activity);
+            if (text != null) {
+                ctxReplaceSelection(text.toString());
+            }
+        }
+    }
+
+    private void ctxReplaceSelection(final String text) {
+        final int start = _hlEditor.getSelectionStart();
+        final int end = _hlEditor.getSelectionEnd();
+        _hlEditor.getText().replace(Math.max(0, Math.min(start, end)), Math.max(start, end), text);
     }
 
     /**
@@ -756,10 +958,7 @@ public class DocumentEditAndViewFragment extends MarkorBaseFragment implements F
                 MarkorDialogFactory.showClipboardHistoryDialog(activity, (entry) -> {
                     final String text = net.gsantner.markor.util.ClipboardBufferHelper.readContent(entry.file);
                     if (text != null && _hlEditor != null) {
-                        final android.text.Editable editable = _hlEditor.getText();
-                        final int start = _hlEditor.getSelectionStart();
-                        final int end = _hlEditor.getSelectionEnd();
-                        editable.replace(Math.max(0, Math.min(start, end)), Math.max(start, end), text);
+                        ctxReplaceSelection(text);
                     }
                 });
                 return true;

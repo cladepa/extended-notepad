@@ -64,6 +64,18 @@ work. If not, see <https://creativecommons.org/publicdomain/zero/1.0/>.
     <string name="encoding_current">Current: %1$s%2$s</string>
     <string name="clipboard_history">Clipboard History</string>
     <string name="clipboard_history_empty">Clipboard history is empty</string>
+    <string name="context_menu">Menu</string>
+    <string name="copy">Copy</string>
+    <string name="cut">Cut</string>
+    <string name="paste">Paste</string>
+    <string name="paste_from_clipboard_history">Paste from history…</string>
+    <string name="select">Select…</string>
+    <string name="select_word">Select word</string>
+    <string name="select_line">Select line</string>
+    <string name="select_to_line_end">Select to end of line</string>
+    <string name="select_to_line_start">Select to start of line</string>
+    <string name="open_container">Open container</string>
+    <string name="nothing_selected">Nothing selected</string>
     <string name="render_rtl_language">Render for right-to-left languages</string>
     <string name="error_cannot_create_notebook_dir__appspecific">Error: Cannot create notebook directory</string>
 
